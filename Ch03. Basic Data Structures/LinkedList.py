@@ -68,6 +68,31 @@ class LinkedList:
             else:
                 self.head = self.head.next
 
+    def deleteOnIndex(self, index):
+        listSize = self.size()
+        if index >= listSize or self.isEmpty():
+            return
+        else:
+            counter = 0
+            prevNode = None
+            currentNode = self.head
+            while(counter < index):
+                prevNode = currentNode
+                currentNode = currentNode.next
+                counter += 1
+            if prevNode == None:
+                if self.head == self.tail:
+                    self.head = self.tail = None
+                else:
+                    self.head = self.head.next
+            else:
+                if currentNode.next == None:
+                   prevNode.next = None
+                   self.tail = prevNode 
+                else:
+                    prevNode.next = currentNode.next
+                    currentNode = None
+
     def sort(self):
         outer = self.head
         while outer != None:
@@ -94,12 +119,11 @@ class LinkedList:
 
     def size(self):
         counter = 0
+        if self.isEmpty():
+            return 0
         currentNode = self.head
-        while(currentNode != Node):
+        while(currentNode != None):
             counter += 1
             currentNode = currentNode.next
         return counter
-
-    
-
 
