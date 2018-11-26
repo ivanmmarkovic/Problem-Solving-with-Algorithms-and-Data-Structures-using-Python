@@ -86,12 +86,10 @@ class LinkedList:
                 else:
                     self.head = self.head.next
             else:
-                if currentNode.next == None:
-                   prevNode.next = None
-                   self.tail = prevNode 
-                else:
-                    prevNode.next = currentNode.next
-                    currentNode = None
+                if self.tail == currentNode:
+                    self.tail = prevNode
+                prevNode.next = currentNode.next
+                currentNode = None
 
     def sort(self):
         outer = self.head
