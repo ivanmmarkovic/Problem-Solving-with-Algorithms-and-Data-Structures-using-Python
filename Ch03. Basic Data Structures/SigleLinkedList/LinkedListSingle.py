@@ -5,30 +5,30 @@ class LinkedListSingle:
         self.head = None
         self.tail = None
 
-    def isEmpty(self):
-        return self.head == None
-
-    def size(self):
-        counter = 0
-        tmp = self.head
-        while tmp != None:
-            counter += 1
-            tmp = tmp.next
-        return counter
-
     def printAll(self):
         result = ""
-        tmp = self.head
+        tmp = self.head 
         while tmp != None:
-            result += str(tmp.payload)
+            result += (str(tmp.payload) + ", ")
             tmp = tmp.next
         print(result)
+
+    def size(self):
+        count = 0
+        tmp = self.head
+        while tmp != None:
+            count += 1
+            tmp = tmp.next
+        return count
+
+    def isEmpty(self):
+        return self.head == None
 
     def addToHead(self, payload):
         self.head = Node(payload, self.head)
         if self.tail == None:
             self.tail = self.head
-    
+
     def addToTail(self, payload):
         if self.isEmpty():
             self.head = self.tail = Node(payload)
@@ -43,22 +43,78 @@ class LinkedListSingle:
             if self.head == self.tail:
                 self.head = self.tail = None
             else:
-                self.head =self.head.next
-
+                self.head = self.head.next
+    
     def deleteFromTail(self):
         if self.isEmpty():
-            return None
+            return
         else:
-            toReturn = self.tail.payload
             if self.head == self.tail:
                 self.head = self.tail = None
             else:
                 tmp = self.head
                 while tmp.next != self.tail:
-                    tmp = tmp.next 
-                tmp.next = None
+                    tmp = tmp.next
                 self.tail = tmp
-            return toReturn
+                self.tail.next = None
+
+    def deleteOnIndex(self, index):
+        size = self.size()
+        if index < 1 or index > size:
+            return
+        else:
+            if index == 1:
+                self.deleteFromHead()
+            elif index == size:
+                self.deleteFromTail()
+            else:
+                prev = self.head
+                count = 1
+                while count < index - 1:
+                    prev = prev.next
+                    count += 1
+                prev.next = prev.next.next
+
+    def deleteNodesWithValue(self, value):
+        tmp = self.head
+        prev = None
+        while tmp != None:
+            if tmp.payload == value:
+                if tmp == self.head:
+                    self.deleteFromHead()
+                elif tmp == self.tail:
+                    self.deleteFromTail()
+                else:
+                    prev.next = prev.next.next
+                    tmp = prev
+            else:
+                prev = tmp
+            tmp = tmp.next
+
+    def insertAfter(self, listElement, newElement):
+        tmp = self.head
+        while tmp != None:
+            if tmp.payload == listElement:
+                if tmp == self.tail:
+                    self.addToTail(newElement)
+                else:
+                    newNode = Node(newElement, tmp.next)
+                    tmp.next = newNode
+                tmp = tmp.next
+            tmp = tmp.next
+
+    def insertBefore(self, listElement, newElement):
+        tmp = self.head
+        prev = None
+        while tmp != None:
+            if tmp.payload == listElement:
+                if tmp == self.head:
+                    self.addToHead(newElement)
+                else:
+                    newNode = Node(newElement, tmp)
+                    prev.next = newNode
+            prev = tmp
+            tmp = tmp.next
 
     def sort(self):
         outer = self.head
@@ -75,66 +131,4 @@ class LinkedListSingle:
                         swapped = True
                     inner = inner.next
             outer = outer.next
-
-    def deleteOnIndex(self, index):
-        size = self.size()
-        if index < 0 or index > size or self.isEmpty():
-            return 
-        else:
-            if index == 0:
-                self.deleteFromHead()
-            elif index == size - 1:
-                self.deleteFromTail()
-            else:
-                prev = None
-                current = self.head
-                counter = 0
-                while counter < index:
-                    prev = current
-                    current = current.next
-                    counter += 1
-                prev.next = current.next
-
-    def deleteNodesWithValue(self, value):
-        prev = None
-        tmp = self.head
-        while tmp != None:
-            if tmp.payload == value:
-                if tmp == self.head:
-                    self.deleteFromHead()
-                elif tmp == self.tail:
-                    self.deleteFromTail()
-                else:
-                    prev.next = tmp.next
-                    tmp = prev
-            else:
-                prev = tmp
-            
-            tmp = tmp.next
-
-    def insertAfter(self, listPayload, newPayload):
-        tmp = self.head
-        while tmp != None:
-            if tmp.payload == listPayload:
-                if tmp == self.tail:
-                    self.addToTail(newPayload)
-                else:
-                    newNode = Node(newPayload, tmp.next)
-                    tmp.next = newNode
-                tmp = tmp.next
-            tmp = tmp.next
-
-    def insertBefore(self, listPayload, newPayload):
-        prev = None
-        tmp = self.head
-        while tmp != None:
-            if tmp.payload == listPayload:
-                if tmp == self.head:
-                    self.addToHead(newPayload)
-                else:
-                    newNode = Node(newPayload, tmp)
-                    prev.next = newNode
-            prev = tmp
-            tmp = tmp.next
-
 
