@@ -49,12 +49,12 @@ class BinarySearchTree:
             return None
         elif key < self.key:
             if self.hasLeftChild():
-                return self.leftChild.get(key)
+                return self.leftChild.getbst(key)
             else:
                 return None
         elif key > self.key:
             if self.hasRightChild():
-                return self.rightChild.get(key)
+                return self.rightChild.getbst(key)
             else:
                 return None  
 
@@ -102,11 +102,11 @@ class BinarySearchTree:
         return self.rightChild or self.leftChild
 
     def hasBothChildren(self):
-        return self.rightChild and self.leftChild
+        return self.rightChild != None and self.leftChild != None
 
     def delete(self, key):
         bst = self.getbst(key)
-        if bst.key == None:
+        if bst == None:
             return None
         else:
             if bst.isRoot() and bst.isLeaf():
@@ -117,7 +117,12 @@ class BinarySearchTree:
                 elif bst.isRightChild():
                     bst.parent.rightChild = None
             elif bst.hasBothChildren():
-                pass
+                maxInLeft = bst.leftChild.findMax()
+                key = maxInLeft.key
+                payload = maxInLeft.payload
+                self.delete(maxInLeft.key) 
+                bst.key = key
+                bst.payload = payload
             elif bst.hasAnyChildren():
                 if bst.hasLeftChild():
                     if bst.isLeftChild():
@@ -138,6 +143,18 @@ class BinarySearchTree:
                         bst.rightChild.parent = bst.parent
                         bst = None
 
+    def findMin(self):
+        if self.hasLeftChild():
+            return self.leftChild.findMin()
+        else:
+            return self
+
+    def findMax(self):
+        if self.hasRightChild():
+            return self.rightChild.findMax()
+        else:
+            return self
+
     def print(self): # preorder
         print("Key: ", self.key, "Payload : ", self.payload)
         if self.hasLeftChild():
@@ -154,6 +171,15 @@ bst.put(115)
 bst.put(3)
 bst.put(200)
 bst.put(4)
+bst.put(210)
+bst.put(150)
+bst.put(160)
+bst.put(1)
+bst.put(140)
+bst.put(130)
+bst.put(141)
+bst.put(211)
+
 
 bst.print()   
 print("--------------")
@@ -174,7 +200,22 @@ print("Checking contains method : ")
 print(bst.contains(3))
 print(bst.contains(1001))
 print(bst.contains(115))
-print("--------------")
+print("-----------------------------------------------------------")
+print("-----------------------------------------------------------")
+print("-----------------------------------------------------------")
         
+print(bst.findMin().key, bst.rightChild.findMin().key)
+
+# print(bst.getbst(150).hasBothChildren())
+print("---------------->", bst.getbst(140).rightChild.key)
+bst.delete(150)
+print(bst.rightChild.leftChild.key)
+print(bst.rightChild.leftChild.hasBothChildren())
+print(bst.getbst(140).rightChild)
+bst.print()
+
+
+
+
 
 
