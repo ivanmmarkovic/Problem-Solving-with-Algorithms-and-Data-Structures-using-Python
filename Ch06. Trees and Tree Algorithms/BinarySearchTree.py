@@ -3,76 +3,8 @@ class BinarySearchTree:
         self.key = key
         self.payload = payload
         self.parent = parent
-        self.leftChild = leftChild
-        self.rightChild = rightChild
-
-    def getKey(self):
-        return self.key
-
-    def put(self, key, payload = None):
-        if self.key == None:
-            self.key = key
-            self.payload = payload
-        elif key < self.key:
-            if self.hasLeftChild():
-                self.leftChild.put(key, payload)
-            else:
-                self.leftChild = BinarySearchTree(key, payload, self) 
-        elif key > self.key:
-            if self.hasRightChild():
-                self.rightChild.put(key, payload)
-            else:
-                self.rightChild = BinarySearchTree(key, payload, self)
-        elif self.key == key:
-            self.payload = payload
-
-    def get(self, key):
-        if self.key == key:
-            return self.payload
-        elif self.key == None:
-            return None
-        elif key < self.key:
-            if self.hasLeftChild():
-                return self.leftChild.get(key)
-            else:
-                return None
-        elif key > self.key:
-            if self.hasRightChild():
-                return self.rightChild.get(key)
-            else:
-                return None  
-
-    def getbst(self, key):
-        if self.key == key:
-            return self
-        elif self.key == None:
-            return None
-        elif key < self.key:
-            if self.hasLeftChild():
-                return self.leftChild.getbst(key)
-            else:
-                return None
-        elif key > self.key:
-            if self.hasRightChild():
-                return self.rightChild.getbst(key)
-            else:
-                return None  
-
-    def contains(self, key):
-        if self.key == key:
-            return True
-        elif self.key == None:
-            return False
-        elif key < self.key:
-            if self.hasLeftChild():
-                return self.leftChild.contains(key)
-            else:
-                return False
-        elif key > self.key:
-            if self.hasRightChild():
-                return self.rightChild.contains(key)
-            else:
-                return False
+        self.leftChild = None
+        self.rightChild = None
 
     def hasParent(self):
         return self.parent != None
@@ -80,142 +12,163 @@ class BinarySearchTree:
     def getParent(self):
         return self.parent
 
+    def isRoot(self):
+        return self.parent == None
+    
+    def isLeaf(self):
+        return self.leftChild == None and self.rightChild == None
+
     def isLeftChild(self):
-        return self.parent != None and self.parent.leftChild == self
+        return self.parent.leftChild == self
 
     def isRightChild(self):
-        return self.parent != None and self.parent.rightChild == self
+        return self.parent.rightChild == self
 
     def hasLeftChild(self):
         return self.leftChild != None
-    
+
     def hasRightChild(self):
         return self.rightChild != None
 
-    def isRoot(self):
-        return not self.parent
-
-    def isLeaf(self):
-        return not (self.rightChild or self.leftChild)
-
     def hasAnyChildren(self):
         return self.rightChild or self.leftChild
-
     def hasBothChildren(self):
-        return self.rightChild != None and self.leftChild != None
+        return self.hasLeftChild() and self.hasRightChild()
 
-    def delete(self, key):
-        bst = self.getbst(key)
-        if bst == None:
+    def put(self, key, payload = None):
+        if self.key == None:
+            self.key = key
+            self.payload = payload
+        elif self.key == key:
+            self.payload = payload
+        elif self.key > key:
+            if self.leftChild == None:
+                self.leftChild = BinarySearchTree(key, payload, self)
+            else:
+                self.leftChild.put(key, payload)
+        elif self.key < key:
+            if self.rightChild == None:
+                self.rightChild = BinarySearchTree(key, payload, self)
+            else:
+                self.rightChild.put(key, payload)
+
+    def get(self, key):
+        if self.key == None:
             return None
-        else:
-            if bst.isRoot() and bst.isLeaf():
-                bst = None
-            elif bst.isLeaf():
-                if bst.isLeftChild():
-                    bst.parent.leftChild = None
-                elif bst.isRightChild():
-                    bst.parent.rightChild = None
-            elif bst.hasBothChildren():
-                maxInLeft = bst.leftChild.findMax()
-                key = maxInLeft.key
-                payload = maxInLeft.payload
-                self.delete(maxInLeft.key) 
-                bst.key = key
-                bst.payload = payload
-            elif bst.hasAnyChildren():
-                if bst.hasLeftChild():
-                    if bst.isLeftChild():
-                        bst.parent.leftChild = bst.leftChild
-                        bst.leftChild.parent = bst.parent
-                        bst = None
-                    elif bst.isRightChild():
-                        bst.parent.rightChild = bst.leftChild
-                        bst.leftChild.parent = bst.parent
-                        bst = None
-                elif bst.hasRightChild():
-                    if bst.isLeftChild():
-                        bst.parent.leftChild = bst.rightChild
-                        bst.rightChild.parent = bst.parent
-                        bst = None
-                    elif bst.isRightChild():
-                        bst.parent.rightChild = bst.rightChild
-                        bst.rightChild.parent = bst.parent
-                        bst = None
-
-    def findMin(self):
-        if self.hasLeftChild():
-            return self.leftChild.findMin()
-        else:
+        elif self.key == key:
             return self
+        elif self.key > key:
+            if self.leftChild == None:
+                return None
+            else:
+                return self.leftChild.get(key)
+        elif self.key < key:
+            if self.rightChild == None:
+                return None
+            else:
+                return self.rightChild.get(key)
+
+    def contains(self, key):
+        if self.key == None:
+            return False
+        elif self.key == key:
+            return True
+        elif self.key > key:
+            if self.leftChild == None:
+                return False
+            else:
+                return self.leftChild.contains(key)
+        elif self.key < key:
+            if self.rightChild == None:
+                return False
+            else:
+                return self.rightChild.contains(key)
 
     def findMax(self):
-        if self.hasRightChild():
-            return self.rightChild.findMax()
-        else:
+        if self.key == None:
+            return None
+        elif not self.hasRightChild():
             return self
+        else:
+            return self.rightChild.findMax()
 
-    def print(self): # preorder
-        print("Key: ", self.key, "Payload : ", self.payload)
-        if self.hasLeftChild():
-            self.leftChild.print()
-        if self.hasRightChild():
-            self.rightChild.print()
+    def findMin(self):
+        if self.key == None:
+            return None
+        elif not self.hasLeftChild():
+            return self
+        else:
+            return self.leftChild.findMin()
 
 
+    def delete(self, key):
+        bst = self.get(key)
+        if bst == None:
+            return
+        elif bst.isRoot() and bst.isLeaf():
+            bst = None
+        elif bst.isLeaf():
+            if bst.isLeftChild():
+                bst.parent.leftChild = None
+            elif bst.isRightChild():
+                bst.parent.rightChild = None
+            bst = None
+        elif bst.hasBothChildren():
+            maxNode = bst.leftChild.findMax()
+            tmpKey = maxNode.key
+            tmpPayload = maxNode.payload
+            bst.delete(maxNode.key)
+            bst.key = tmpKey
+            bst.payload = tmpPayload
+        elif bst.hasLeftChild():
+            if bst.isLeftChild():
+                bst.parent.leftChild = bst.leftChild
+            elif bst.isRightChild():
+                bst.parent.rightChild = bst.leftChild
+            bst = None
+        elif bst.hasRightChild():
+            if bst.isLeftChild():
+                bst.parent.leftChild = bst.rightChild
+            elif bst.isRightChild():
+                bst.parent.rightChild = bst.rightChild
+            bst = None
+
+            
+    def show(self):
+        result = ""
+        result += str(self.key) + ", "
+        if self.leftChild:
+            result += self.leftChild.show()
+        if self.rightChild:
+            result += self.rightChild.show()
+        return result
 
 bst = BinarySearchTree()
 
-print("Checking put method : ")
-bst.put(115)
+
+bst.put(15)
+bst.put(7)
+bst.put(8)
+bst.put(6)
+bst.put(30)
+bst.put(20)
+bst.put(40)
+bst.put(18)
+bst.put(19)
+bst.put(25)
+bst.put(24)
+bst.put(17)
 bst.put(3)
-bst.put(200)
-bst.put(4)
-bst.put(210)
-bst.put(150)
-bst.put(160)
-bst.put(1)
-bst.put(140)
-bst.put(130)
-bst.put(141)
-bst.put(211)
+print(bst.show())
+
+print("contains #############")
+print(bst.contains(8), bst.contains(19), bst.contains(1101))
+print("Min ",bst.findMin().key, ", max ", bst.findMax().key)
+bst20 = bst.get(20)
+print(bst20.findMax().key, bst20.findMin().key)
 
 
-bst.print()   
-print("--------------")
-
-print("Checking put method again : ")
-bst.put(3, "Number 3")
-bst.put(4, "Number 4")
-bst.print()
-print("--------------")
-
-print("Checking get method : ")
-print(bst.get(3))
-print(bst.get(1001))
-print("--------------")
-
-
-print("Checking contains method : ")
-print(bst.contains(3))
-print(bst.contains(1001))
-print(bst.contains(115))
-print("-----------------------------------------------------------")
-print("-----------------------------------------------------------")
-print("-----------------------------------------------------------")
-        
-print(bst.findMin().key, bst.rightChild.findMin().key)
-
-# print(bst.getbst(150).hasBothChildren())
-print("---------------->", bst.getbst(140).rightChild.key)
-bst.delete(150)
-print(bst.rightChild.leftChild.key)
-print(bst.rightChild.leftChild.hasBothChildren())
-print(bst.getbst(140).rightChild)
-bst.print()
-
-
-
-
-
+print("delete node with value 20 - has both children")
+bst.delete(20)
+print(bst.show())
 
