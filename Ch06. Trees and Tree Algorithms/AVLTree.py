@@ -56,24 +56,26 @@ class AVLTree:
                 self.parent.updateBalance(self)
 
     def rebalance(self):
-        if self.balance < -1:
+        if self.balance < 0:
             if self.rightChild.balance > 0:
                 self.rightChild.rotateRight()
                 self.rotateLeft()
             else:
                 self.rotateLeft()
-        elif self.balance > 1:
+        elif self.balance > 0:
             if self.leftChild.balance < 0:
                 self.leftChild().rotateLeft()
                 self.rotateRight()
             else:
                 self.rotateRight()
-        # UPDATE BALANCE
+        
 
     def rotateLeft(self):
         pass
+        # UPDATE BALANCE
 
     def rotateRight(self):
         pass
+        # UPDATE BALANCE
 
 
