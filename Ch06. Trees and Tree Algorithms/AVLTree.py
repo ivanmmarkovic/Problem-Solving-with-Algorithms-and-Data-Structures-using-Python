@@ -1,4 +1,9 @@
 # NOT FINISHED
+# update balance rotateRight
+# delete method
+# height property
+
+
 class AVLTree:
     def __init__(self,key = None, payload = None, parent = None, 
             leftChild = None, rightChild = None, height = 0, balance = 0):
@@ -71,11 +76,43 @@ class AVLTree:
         
 
     def rotateLeft(self):
-        pass
-        # UPDATE BALANCE
+        oldRoot = self
+        newRoot = self.rightChild
+        # child
+        oldRoot.rightChild = newRoot.leftChild
+        if newRoot.leftChild != None:
+            newRoot.leftChild.parent = oldRoot 
+        # oldRoot parent
+        newRoot.parent = oldRoot.parent
+        if oldRoot.parent != None:
+            if oldRoot.isLeftChild():
+                oldRoot.parent.leftChild = newRoot
+            elif oldRoot.isRightChild():
+                oldRoot.parent.rightChild = newRoot
+        # set parent child relation
+        newRoot.leftChild = oldRoot
+        oldRoot.parent = newRoot
+
+        oldRoot.balance = oldRoot.balance + 1 - min(newRoot.balance, 0)
+        newRoot.balance = newRoot.balance + 1 + max(oldRoot.balance, 0) 
 
     def rotateRight(self):
-        pass
-        # UPDATE BALANCE
+        oldRoot = self
+        newRoot = oldRoot.leftChild
+        # child
+        oldRoot.leftChild = newRoot.rightChild
+        if newRoot.rightChild != None:
+            newRoot.rightChild.parent = oldRoot
+        # oldRoot parent
+        newRoot.parent = oldRoot.parent
+        if oldRoot.parent != None:
+            if oldRoot.isLeftChild():
+                oldRoot.parent.leftChild = newRoot
+            elif oldRoot.isRightChild():
+                oldRoot.parent.rightChild = newRoot
+        # set parent child relation
+        newRoot.rightChild = oldRoot
+        oldRoot.parent = newRoot
+
 
 
