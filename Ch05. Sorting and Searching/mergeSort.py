@@ -1,4 +1,5 @@
 # todo version without slicing
+# 
 alist = [54,26,93,17,77,31,44,55,20]
 print(alist)
 def mergeSort(alist):
