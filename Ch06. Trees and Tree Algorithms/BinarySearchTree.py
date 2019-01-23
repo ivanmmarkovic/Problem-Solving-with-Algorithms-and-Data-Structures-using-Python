@@ -1,10 +1,12 @@
+
+
 class BinarySearchTree:
     def __init__(self, key = None, payload = None, parent = None, leftChild = None, rightChild = None):
         self.key = key
         self.payload = payload
         self.parent = parent
-        self.leftChild = None
-        self.rightChild = None
+        self.leftChild = leftChild
+        self.rightChild = rightChild
 
     def hasParent(self):
         return self.parent != None
@@ -32,25 +34,24 @@ class BinarySearchTree:
 
     def hasAnyChildren(self):
         return self.rightChild or self.leftChild
+
     def hasBothChildren(self):
         return self.hasLeftChild() and self.hasRightChild()
 
     def put(self, key, payload = None):
-        if self.key == None:
+        if self.key == None or self.key == key:
             self.key = key
             self.payload = payload
-        elif self.key == key:
-            self.payload = payload
         elif self.key > key:
-            if self.leftChild == None:
-                self.leftChild = BinarySearchTree(key, payload, self)
-            else:
+            if self.hasLeftChild():
                 self.leftChild.put(key, payload)
-        elif self.key < key:
-            if self.rightChild == None:
-                self.rightChild = BinarySearchTree(key, payload, self)
             else:
-                self.rightChild.put(key, payload)
+                self.leftChild = BinarySearchTree(key,payload, self)
+        elif self.key < key:
+            if self.hasRightChild():
+                self.rightChild.put(key,payload)
+            else:
+                self.rightChild = BinarySearchTree(key, payload, self)
 
     def get(self, key):
         if self.key == None:
@@ -58,15 +59,15 @@ class BinarySearchTree:
         elif self.key == key:
             return self
         elif self.key > key:
-            if self.leftChild == None:
-                return None
-            else:
+            if self.hasLeftChild():
                 return self.leftChild.get(key)
-        elif self.key < key:
-            if self.rightChild == None:
-                return None
             else:
+                return None
+        elif self.key < key:
+            if self.hasRightChild():
                 return self.rightChild.get(key)
+            else:
+                return None
 
     def contains(self, key):
         if self.key == None:
@@ -74,50 +75,58 @@ class BinarySearchTree:
         elif self.key == key:
             return True
         elif self.key > key:
-            if self.leftChild == None:
-                return False
-            else:
+            if self.hasLeftChild():
                 return self.leftChild.contains(key)
-        elif self.key < key:
-            if self.rightChild == None:
-                return False
             else:
+                return False
+        elif self.key < key:
+            if self.hasRightChild():
                 return self.rightChild.contains(key)
-
-    def findMax(self):
-        if self.key == None:
-            return None
-        elif not self.hasRightChild():
-            return self
-        else:
-            return self.rightChild.findMax()
+            else:
+                return False
 
     def findMin(self):
         if self.key == None:
             return None
-        elif not self.hasLeftChild():
-            return self
-        else:
+        elif self.hasLeftChild():
             return self.leftChild.findMin()
+        else:
+            return self
 
+    def findMax(self):
+        if self.key == None:
+            return None
+        elif self.hasRightChild():
+            return self.rightChild.findMax()
+        else:
+            return self
 
-    def delete(self, key):
+    def delete(self,key):
         bst = self.get(key)
-        if bst == None:
-            return
-        elif bst.isRoot() and bst.isLeaf():
-            bst = None
+        if bst.isRoot():
+            if bst.isLeaf():
+                bst = None
+            elif bst.hasBothChildren():
+                toDelete = bst.leftChild.findMax()
+                tmpKey = toDelete.key
+                tmpPayload = toDelete.payload
+                bst.delete(toDelete.key)
+                bst.key = tmpKey
+                bst.payload = tmpPayload
+            elif bst.hasLeftChild():
+                bst.leftChild.parent = None
+            elif bst.hasRightChild():
+                bst.rightChild.parent = None
         elif bst.isLeaf():
             if bst.isLeftChild():
-                bst.parent.leftChild = None
+                bst.parent.leftChild == None
             elif bst.isRightChild():
-                bst.parent.rightChild = None
-            bst = None
+                bst.parent.rightChild == None
         elif bst.hasBothChildren():
-            maxNode = bst.leftChild.findMax()
-            tmpKey = maxNode.key
-            tmpPayload = maxNode.payload
-            bst.delete(maxNode.key)
+            toDelete = bst.leftChild.findMax()
+            tmpKey = toDelete.key
+            tmpPayload = toDelete.payload
+            bst.delete(toDelete.key)
             bst.key = tmpKey
             bst.payload = tmpPayload
         elif bst.hasLeftChild():
@@ -125,26 +134,23 @@ class BinarySearchTree:
                 bst.parent.leftChild = bst.leftChild
             elif bst.isRightChild():
                 bst.parent.rightChild = bst.leftChild
-            bst = None
         elif bst.hasRightChild():
             if bst.isLeftChild():
                 bst.parent.leftChild = bst.rightChild
             elif bst.isRightChild():
                 bst.parent.rightChild = bst.rightChild
-            bst = None
 
-            
     def show(self):
         result = ""
-        result += str(self.key) + ", "
-        if self.leftChild:
+        if self.hasLeftChild():
             result += self.leftChild.show()
-        if self.rightChild:
+        result += str(self.key) + ", "
+        if self.hasRightChild():
             result += self.rightChild.show()
         return result
 
-bst = BinarySearchTree()
 
+bst = BinarySearchTree()
 
 bst.put(15)
 bst.put(7)
@@ -165,10 +171,13 @@ print("contains #############")
 print(bst.contains(8), bst.contains(19), bst.contains(1101))
 print("Min ",bst.findMin().key, ", max ", bst.findMax().key)
 bst20 = bst.get(20)
+print(bst20.key)
 print(bst20.findMax().key, bst20.findMin().key)
 
 
 print("delete node with value 20 - has both children")
 bst.delete(20)
 print(bst.show())
+        
 
+        
