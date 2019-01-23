@@ -62,3 +62,18 @@ def inorder(bt):
     return result
 
 print(inorder(bt))
+
+# same as method above
+def inorderv02(bt):
+    result = ""
+    if bt:
+        if bt.leftChild:
+            result += "(" + inorderv02(bt.leftChild)
+        result += str(bt.getRootValue())
+        if bt.rightChild:
+            result += inorderv02(bt.rightChild) + ")"
+    return result
+    
+
+print(inorderv02(bt))
+                
