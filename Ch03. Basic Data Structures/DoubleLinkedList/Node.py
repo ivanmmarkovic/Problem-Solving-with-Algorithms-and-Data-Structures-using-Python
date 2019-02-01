@@ -1,5 +1,6 @@
 class Node:
-    def __init__(self, payload,previous = None, next = None):
+    def __init__(self, payload=None, prev = None, next=None):
         self.payload = payload
-        self.previous = previous
+        self.prev = prev
         self.next = next
+
