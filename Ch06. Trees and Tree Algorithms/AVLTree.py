@@ -1,7 +1,3 @@
-# NOT FINISHED
-# delete method
-
-
 
 class AVLTree:
     def __init__(self, key = None, payload = None, parent = None, leftChild = None, rightChild = None,
@@ -45,6 +41,33 @@ class AVLTree:
     def isRightChild(self):
         return self.parent.rightChild == self
 
+    def findMin(self):
+        if self.hasLeftChild():
+            return self.leftChild.findMin()
+        else:
+            return self
+
+    def findMax(self):
+        if self.hasRightChild():
+            return self.rightChild.findMax()
+        else:
+            return self
+
+    def get(self, key):
+        if self.key == None:
+            return None
+        elif self.key == key:
+            return self
+        elif self.key > key:
+            if self.hasLeftChild():
+                return self.leftChild.get(key)
+            else:
+                return None
+        elif self.key < key:
+            if self.hasRightChild():
+                return self.rightChild.get(key)
+            else:
+                return None
 
     def put(self, key, payload = None):
         if self.key == None:
@@ -63,6 +86,54 @@ class AVLTree:
                 self.rightChild = AVLTree(key, payload,self)
                 self.updateHeight(self.rightChild)
 
+    def delete(self,key):
+        nodeToDelete = self.get(key)
+        if nodeToDelete.isLeaf():
+            if nodeToDelete.hasParent():
+                parent = nodeToDelete.parent
+                if nodeToDelete.isLeftChild():
+                    nodeToDelete.parent.leftChild = None
+                    parent.updateHeightAfterDeletion("left")
+                else:
+                    nodeToDelete.parent.rightChild = None
+                    parent.updateHeightAfterDeletion("right")
+            else:
+                nodeToDelete = None
+        elif nodeToDelete.hasBothChildren():
+            maxInLeftBranch = nodeToDelete.leftChild.findMax()
+            tmpKey = maxInLeftBranch.key
+            tmpPayload = maxInLeftBranch.payload
+            nodeToDelete.delete(tmpKey)
+            nodeToDelete.key = tmpKey
+            nodeToDelete.payload = tmpPayload
+        elif nodeToDelete.hasLeftChild():
+            if nodeToDelete.hasParent():
+                parent = nodeToDelete.parent
+                if nodeToDelete.isLeftChild():
+                    nodeToDelete.parent.leftChild = nodeToDelete.leftChild
+                    nodeToDelete.leftChild.parent = nodeToDelete.parent
+                    parent.updateHeightAfterDeletion("left")
+                else:
+                    nodeToDelete.parent.rightChild = nodeToDelete.leftChild
+                    nodeToDelete.leftChild.parent = nodeToDelete.parent
+                    parent.updateHeightAfterDeletion("right")
+            else:
+                nodeToDelete.leftChild.parent = None
+        elif nodeToDelete.hasRightChild():
+            if nodeToDelete.hasParent():
+                parent = nodeToDelete.parent
+                if nodeToDelete.isLeftChild():
+                    nodeToDelete.rightChild.parent = nodeToDelete.parent
+                    nodeToDelete.parent.leftChild = nodeToDelete.rightChild
+                    parent.updateHeightAfterDeletion("left")
+                else:
+                    nodeToDelete.rightChild.parent = nodeToDelete.parent
+                    nodeToDelete.parent.rightChild = nodeToDelete.rightChild
+                    parent.updateHeightAfterDeletion("left")
+            else:
+                nodeToDelete.rightChild.parent = None
+
+
     def updateHeight(self, node):
         if node.isLeftChild():
             self.leftHeight += 1
@@ -72,6 +143,19 @@ class AVLTree:
             # self.balanceFactor -= 1
         self.balanceFactor = self.leftHeight - self.rightHeight
 
+        if self.balanceFactor < -1 or self.balanceFactor > 1:
+            self.rebalance()
+            return
+
+        if self.hasParent() and self.balanceFactor != 0:
+            self.parent.updateHeight(self)
+
+    def updateHeightAfterDeletion(self, string):
+        if string == "left":
+            self.leftHeight -= 1
+        elif string == "right":
+            self.rightHeight -= 1
+        self.balanceFactor = self.leftHeight - self.rightHeight
         if self.balanceFactor < -1 or self.balanceFactor > 1:
             self.rebalance()
             return
