@@ -129,7 +129,7 @@ class AVLTree:
                 else:
                     nodeToDelete.rightChild.parent = nodeToDelete.parent
                     nodeToDelete.parent.rightChild = nodeToDelete.rightChild
-                    parent.updateHeightAfterDeletion("left")
+                    parent.updateHeightAfterDeletion("right")
             else:
                 nodeToDelete.rightChild.parent = None
 
