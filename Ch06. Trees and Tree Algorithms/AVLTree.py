@@ -228,7 +228,7 @@ class AVLTree:
                 oldRoot.parent.rightChild = newRoot
         # set parent child relation
         oldRoot.parent = newRoot
-        newRoot.leftChild = oldRoot
+        newRoot.rightChild = oldRoot
 
         # first oldRoot, then newRoot - use data from oldRoot
         oldRoot.updateHeightAfterRotation()
