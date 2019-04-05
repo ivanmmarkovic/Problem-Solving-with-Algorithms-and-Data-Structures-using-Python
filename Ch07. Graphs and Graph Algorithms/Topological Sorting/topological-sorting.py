@@ -1,89 +1,77 @@
 from Stack import Stack
 from collections import OrderedDict
 
+
 class Graph:
     def __init__(self):
         self.vertices = []
         self.adjacencyList = {}
-        self.distance = {}
         self.previous = {}
+        self.distance = {}
         self.visited = []
 
-    def add_vertex(self, v):
-        self.vertices.append(v)
-        self.adjacencyList[v] = []
-        self.distance[v] = 0
-        self.previous[v] = None
+    def add_vertex(self, vertex):
+        self.vertices.append(vertex)
+        self.adjacencyList[vertex] = []
+        self.previous[vertex] = None
+        self.distance[vertex] = 0
 
-    def add_edge(self,v1, v2):
-        self.adjacencyList[v1].append(v2)
-        #self.adjacencyList[v2].append(v1) DIRECTED ACYCLIC GRAPHS ONLY
+    def add_edge(self, vertex1, vertex2):
+        self.adjacencyList[vertex1].append(vertex2)
 
-    def to_string(self):
-        result = ""
+    def top_sort(self):
         for vertex in self.vertices:
-            result += (vertex + " -> ")
-            for neighbour in self.adjacencyList[vertex]:
-                result += neighbour + " "
-            result += "\n"
-        return result
-
-    def breadth_first_search(self):
-        for vertex in self.vertices:
-            self.search_helper(vertex)
+            self.top_sort_help(vertex)
 
         sorted_x = sorted(self.distance.items(), key=lambda kv: kv[1])
         sorted_dict = OrderedDict(sorted_x)
         print(sorted_dict)
 
-    def search_helper(self, vertex):
-        self.visited.append(vertex)
+    def top_sort_help(self, vertex):
         stack = Stack()
-        stack.push(vertex)
         self.visited.append(vertex)
+        stack.push(vertex)
         while not stack.isEmpty():
-            peeked_vertex = stack.peek()
-            new_vertex = self.find_unvisited_neighbour(peeked_vertex)
-            if new_vertex != None:
-                self.previous[new_vertex] = peeked_vertex
-                self.distance[new_vertex] = self.distance[peeked_vertex] + 1
-                self.visited.append(new_vertex)
-                stack.push(new_vertex)
+            vertex_peeked = stack.peek()
+            neighbour = self.find_unvisited_neighbour(vertex_peeked)
+            if neighbour != None:
+                stack.push(neighbour)
+                self.previous[neighbour] = vertex_peeked
+                self.distance[neighbour] = self.distance[vertex_peeked] + 1
+                self.visited.append(neighbour)
             else:
                 stack.pop()
+
 
     def find_unvisited_neighbour(self, vertex):
         found = False
         count = 0
+        neighbour = None
         while count < len(self.adjacencyList[vertex]) and not found:
-            if self.adjacencyList[vertex][count] not in self.visited:
-                found =True
+            neighbour = self.adjacencyList[vertex][count]
+            if neighbour not in self.visited:
+                found = True
             else:
-                count +=1
+                count += 1
         if found:
-            return self.adjacencyList[vertex][count]
+            return neighbour
         else:
             return None
 
 graph = Graph()
+graph.add_vertex("A")
+graph.add_vertex("B")
+graph.add_vertex("C")
+graph.add_vertex("D")
+graph.add_vertex("E")
+graph.add_vertex("F")
+graph.add_vertex("G")
 
+graph.add_edge("A", "B")
+graph.add_edge("B", "C")
+graph.add_edge("C", "D")
+graph.add_edge("C", "E")
+graph.add_edge("F", "B")
+graph.add_edge("F", "G")
 
-vertices = ['A', 'B', 'C', 'D', 'E']
-# add vertices
-for i in range(len(vertices)):
-    graph.add_vertex(vertices[i])
-
-graph.add_edge('A', 'B')
-graph.add_edge('C', 'B')
-graph.add_edge('B', 'D')
-graph.add_edge('D', 'E')
-
-print(graph.to_string())
-print("##########################")
-graph.breadth_first_search()
-print(graph.distance)
-print(graph.previous)
-print(graph.distance)
-
-
-    
+graph.top_sort()
