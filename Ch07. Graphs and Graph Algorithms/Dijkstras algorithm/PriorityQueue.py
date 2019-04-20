@@ -29,7 +29,7 @@ class PriorityQueue:
     def percDown(self, index):
         while index * 2 <= self.size:
             min_index = self.getMinIndex(index)
-            if self.queue[index].weight < self.queue[min_index].weight:
+            if self.queue[index].weight > self.queue[min_index].weight:
                 tmp = self.queue[index]
                 self.queue[index] = self.queue[min_index]
                 self.queue[min_index] = tmp
@@ -39,7 +39,7 @@ class PriorityQueue:
         if index * 2 + 1 > self.size:
             return index * 2
         else:
-            if self.queue[index * 2].weight < self.queue[index * 2 + 1].weight:
+            if self.queue[index * 2].weight <= self.queue[index * 2 + 1].weight:
                 return index * 2
             else:
                 return index * 2 + 1
