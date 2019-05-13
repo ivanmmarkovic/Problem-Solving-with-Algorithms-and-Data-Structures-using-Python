@@ -139,7 +139,15 @@ class BinarySearchTree:
                 bst.parent.leftChild = bst.rightChild
             elif bst.isRightChild():
                 bst.parent.rightChild = bst.rightChild
-
+    
+    def size(self):
+        count = 1
+        if self.hasLeftChild():
+            count += self.leftChild.size()
+        if self.hasRightChild():
+            count += self.rightChild.size()
+        return count
+    
     def show(self):
         result = ""
         if self.hasLeftChild():
