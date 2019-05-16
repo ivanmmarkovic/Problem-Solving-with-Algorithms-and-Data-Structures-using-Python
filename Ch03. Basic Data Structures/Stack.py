@@ -15,7 +15,10 @@ class Stack:
             return None
 
     def pop(self):
-        return self.stack.pop()
+        if not self.isEmpty():
+            return self.stack.pop()
+        else:
+            return None
 
     def push(self, item):
         self.stack.append(item)
