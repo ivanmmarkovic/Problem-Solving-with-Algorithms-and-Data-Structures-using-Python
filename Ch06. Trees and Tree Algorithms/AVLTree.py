@@ -1,4 +1,4 @@
-
+# shold be tested, not shure for updateHeightAfterDeletion method
 class AVLTree:
     def __init__(self, key = None, payload = None, parent = None, leftChild = None, rightChild = None,
                  leftHeight = 0, rightHeight = 0, balanceFactor = 0):
