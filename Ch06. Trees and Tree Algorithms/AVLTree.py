@@ -150,7 +150,9 @@ class AVLTree:
         if self.hasParent() and self.balanceFactor != 0:
             self.parent.updateHeight(self)
 
+    # updateHeightAfterDeletion - incorrect
     def updateHeightAfterDeletion(self, string):
+        oldBalanceFactor = self.balanceFactor
         if string == "left":
             self.leftHeight -= 1
         elif string == "right":
@@ -160,8 +162,30 @@ class AVLTree:
             self.rebalance()
             return
 
-        if self.hasParent() and self.balanceFactor != 0:
-            self.parent.updateHeight(self)
+        if self.hasParent() and self.balanceFactor != oldBalanceFactor:
+            self.parent.updateHeightAfterDeletionHelper()
+            
+    # this method should work - not tested       
+    def updateHeightAfterDeletionHelper(self):
+        oldBalanceFactor = self.balanceFactor
+        if self.hasLeftChild():
+            self.leftHeight = max(self.leftChild.leftHeight, self.leftChild.rightHeight) + 1
+        else:
+            self.leftHeight = 0
+
+        if self.hasRightChild():
+            self.rightHeight = max(self.rightChild.leftHeight, self.rightChild.rightHeight) + 1
+        else:
+            self.rightHeight = 0
+
+        self.balanceFactor = (self.leftHeight - self.rightHeight)
+        
+        if self.balanceFactor < -1 or self.balanceFactor > 1:
+            self.rebalance()
+            return
+        
+        if self.hasParent() and self.balanceFactor != oldBalanceFactor:
+            self.parent.updateHeightAfterDeletionHelper()
 
     def updateHeightAfterRotation(self):
         if self.hasLeftChild():
