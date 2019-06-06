@@ -27,7 +27,7 @@ class Graph:
                     tmp_vertex.parent = min_vertex.label
                     tmp_vertex.weight = min_vertex.weight + neighbour_vertex.weight
             pq.deleteMin()
-        print(self.print_path(end_label))
+        print(self.print_path(end_label), self.find_vertex_by_label(end_label).weight)
 
     def print_path(self, label): # label  is String, None by default
         vertex = self.find_vertex_by_label(label) # Vertex object
