@@ -19,13 +19,13 @@ class Graph:
         # self.adjacencyList[label2].append(label1) directed acyclic graph
 
     
-    def dfs(self, label):
+    def dfs(self, label, prev = None):
+        if self.colors[label] != "white":
+            return
         self.colors[label] = "gray"
-        for neighbour in  self.adjacencyList[label]:
-            if self.colors[neighbour] == "white":
-                self.colors[neighbour] = "gray"
-                self.prev[neighbour] = label
-                self.dfs(neighbour)
+        self.prev[label] = prev
+        for neighbour in self.adjacencyList[label]:
+            self.dfs(neighbour, label)
         self.colors[label] = "black"
 
     def print_path(self, end_label)-> str:
