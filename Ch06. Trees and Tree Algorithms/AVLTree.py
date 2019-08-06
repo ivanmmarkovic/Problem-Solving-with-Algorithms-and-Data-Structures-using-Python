@@ -42,13 +42,13 @@ class AVLTree:
             if self.hasLeftChild():
                 self.leftChild.put(key)
             else:
-                self.leftChild = BinarySearchTree(key, self)
+                self.leftChild = AVLTree(key, self)
                 self.updateHeight(self.leftChild)
         else:
             if self.hasRightChild():
                 self.rightChild.put(key)
             else:
-                self.rightChild = BinarySearchTree(key, self)
+                self.rightChild = AVLTree(key, self)
                 self.updateHeight(self.rightChild)
     
     def get(self, key):
