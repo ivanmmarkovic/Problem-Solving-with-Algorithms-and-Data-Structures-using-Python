@@ -76,10 +76,9 @@ class BinarySearchTree:
         bst = self.get(key)
         if bst is None:
             return None
-        toReturn = bst
         if bst.isLeaf():
             if bst.isRoot():
-                bst = None
+                bst.key = None
             elif bst.isLeftChild():
                 bst.parent.leftChild = None
             elif bst.isRightChild():
