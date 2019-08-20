@@ -30,7 +30,8 @@ class Queue:
             if self.front == self.rear:
                 self.front = -1
                 self.rear = -1
-            self.front = (self.front + 1) % self.size
+            else:
+                self.front = (self.front + 1) % self.size
             return toReturn
 
     def showFirst(self):
