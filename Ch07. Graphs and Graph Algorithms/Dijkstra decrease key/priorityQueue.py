@@ -24,17 +24,20 @@ class PriorityQueue:
                 self.queue[index].key = index
             index = index // 2
 
-    def deleteMin(self):
-        if not self.isEmpty():
-            min: Vertex = self.queue[1]
+    def deleteMin(self)->Vertex:
+        if self.isEmpty():
+            return None
+        elif self.size == 1:
+            self.size = 0
+            return self.queue.pop()
+        else:
+            toReturn = self.queue[1]
             self.queue[1] = self.queue[self.size]
             self.queue[1].key = 1
             self.queue.pop()
             self.size -= 1
             self.percDown(1)
-            return min
-        else:
-            return None
+            return toReturn
 
     def percDown(self, index: int):
         while index * 2 <= self.size:
