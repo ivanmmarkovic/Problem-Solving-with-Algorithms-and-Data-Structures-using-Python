@@ -3,7 +3,8 @@ def binarySearchRecursiveNoSlicing(alist: list, item: int, start: int, end: int)
     if start > end:
         return False
     else:
-        midpoint: int = (start + end) // 2
+        #midpoint: int = (start + end) // 2
+        midpoint: int = start + (end - start) // 2 # better approach
         if alist[midpoint] == item:
             return True
         else:
