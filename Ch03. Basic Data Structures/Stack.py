@@ -12,6 +12,8 @@ class Stack:
         return self.stack[len(self.stack) - 1]
 
     def pop(self):
+        # not checking if stack is empty
+        # https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/issues/1
         return self.stack.pop()
 
     def push(self, item):
