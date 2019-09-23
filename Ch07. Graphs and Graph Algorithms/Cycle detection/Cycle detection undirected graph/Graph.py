@@ -18,7 +18,7 @@ class Graph:
         self.adjacencyList[label2].append(label1)
 
     def dfs(self, label: str, prev = None):
-        if self.colors[label] == "gray" and prev is not None and label not in self.prev[prev] != label:
+        if self.colors[label] == "gray" and prev is not None and label not in self.adjacencyList[prev]:
             print("Cycle", prev, label)
             return
         if self.colors[label] != "white": # only black will fall there
