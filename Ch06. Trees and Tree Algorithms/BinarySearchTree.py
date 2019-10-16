@@ -26,19 +26,15 @@ class BinarySearchTree:
     def isRightChild(self):
         return self.parent.rightChild == self
 
-    def findMax(self):
-        if self.key is None:
-            return None
-        elif self.hasRightChild():
-            return self.rightChild.findMax()
+    def getMin(self):
+        if self.hasLeftChild():
+            return self.leftChild.getMin()
         else:
             return self
-
-    def findMin(self):
-        if self.key is None:
-            return None
-        elif self.hasLeftChild():
-            return self.leftChild.findMin()
+    
+    def getMax(self):
+        if self.hasRightChild():
+            return self.rightChild.getMax()
         else:
             return self
 
