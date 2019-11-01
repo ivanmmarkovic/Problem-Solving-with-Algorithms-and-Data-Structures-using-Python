@@ -3,8 +3,10 @@ def binarySearch(alist, item):
     if len(alist) == 0:
         return False
     else:
-        #index: int = (len(alist) - 1) // 2
-        index = len(alist) // 2
+        # index: int = startIndex + (endIndex - startIndex) // 2
+        # index: int = 0 + ((len(alist) - 1) - 0) // 2
+        # endIndex = len(alist) - 1
+        index = (len(alist) - 1) // 2
         if alist[index] == item:
             return True
         else:
