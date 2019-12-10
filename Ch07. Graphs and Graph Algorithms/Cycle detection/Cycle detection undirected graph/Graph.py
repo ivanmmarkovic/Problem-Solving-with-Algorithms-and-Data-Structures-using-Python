@@ -32,7 +32,7 @@ class Graph:
                 self.distance[neighbour] = self.distance[start] + 1
                 self.prev[neighbour] = start 
                 self.dfs(neighbour)
-            if self.colors[neighbour] == "gray" and self.prev[start] != neighbour:
+            elif self.colors[neighbour] == "gray" and self.prev[start] != neighbour:
                 print("Cycle", start, "->", neighbour)
             
         self.colors[start] = "black"
