@@ -1,83 +1,46 @@
-from Stack import Stack
+from stack import Stack
 
 class Graph:
     def __init__(self):
         self.vertices: list = []
-        self.adjacencyList: dict = {}
+        self.distance: dict = {}
         self.prev: dict = {}
+        self.adjacencyList: dict = {}
         self.colors: dict = {}
+        self.entry: dict = {}
+        self.exit: dict = {}
+        self.time: int = 0
         self.explored: list = []
 
-    def add_vertex(self, label):
+    def addVertex(self, label: str):
         self.vertices.append(label)
-        self.adjacencyList[label] = []
+        self.distance[label] = 0
         self.prev[label] = None
+        self.adjacencyList[label]: list = []
         self.colors[label] = "white"
 
-    def add_edge(self, label1, label2):
+    def addEdge(self, label1: str, label2: str):
         self.adjacencyList[label1].append(label2)
-        # self.adjacencyList[label2].append(label1) directed acyclic graph
+        #self.adjacencyList[label2].append(label1)
 
-    
-    def dfs(self, label, prev = None):
-        if self.colors[label] != "white":
-            return
-        self.colors[label] = "gray"
-        self.prev[label] = prev
-        for neighbour in self.adjacencyList[label]:
-            self.dfs(neighbour, label)
-        self.colors[label] = "black"
+    def dfs(self, start: str):
+        print("Visiting ", start)
+        self.colors[start] = "gray"
+        self.entry[start] = self.time
+        self.time += 1
+        for neighbour in self.adjacencyList[start]:
+            if self.colors[neighbour] == "white":
+                self.distance[neighbour] = self.distance[start] + 1
+                self.prev[neighbour] = start 
+                self.dfs(neighbour)
+        self.colors[start] = "black"
+        self.exit[start] = self.time 
+        self.time + 1
+        self.explored.append(start)
 
-    def print_path(self, end_label)-> str:
-        if self.prev[end_label] is None:
-            return end_label
+    def printPath(self, label: str)-> str:
+        if self.prev[label] is None:
+            return label
         else:
-            return self.print_path(self.prev[end_label]) + " -> " + end_label
-
-    def get_neighbour(self, label)-> str:
-        count: int = 0
-        found: bool = False
-        while count < len(self.adjacencyList[label]) and not found:
-            if self.colors[self.adjacencyList[label][count]] == "white":
-                found = True
-            else:
-                count += 1
-        if found:
-            return self.adjacencyList[label][count]
-        else:
-            return None
-
-    def toString(self):
-        result = ""
-        for vertex in self.vertices:
-            result += ("Neigbours of " + vertex + ": ")
-            for neighbour in self.adjacencyList[vertex]:
-                result += (neighbour + ", ")
-            result += "\n"
-        return result
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            return self.printPath(self.prev[label]) + " -> " + label
 
