@@ -1,25 +1,28 @@
-from Graph import Graph
+from graph import Graph
 
-graph = Graph()
+
+graph: Graph = Graph()
 
 vertices = ["a", "b", "c", "d", "e", "f", "g"]
 for vertex in vertices:
-    graph.add_vertex(vertex)
+    graph.addVertex(vertex)
 
 
-graph.add_edge("a", "c")
-graph.add_edge("c", "d")
-graph.add_edge("c", "f")
-graph.add_edge("a", "b")
-graph.add_edge("d", "e")
-graph.add_edge("b", "c")
-graph.add_edge("b", "g")
+graph.addEdge("a", "c")
+graph.addEdge("c", "d")
+graph.addEdge("c", "f")
+graph.addEdge("a", "b")
+graph.addEdge("d", "e")
+graph.addEdge("b", "c")
+graph.addEdge("b", "g")
 
 graph.dfs("a")
 
-print(graph.print_path("e"))
+print(graph.printPath("e"))
 
-
+print(graph.prev)
+print(graph.entry)
+print(graph.exit)
 
 
 
