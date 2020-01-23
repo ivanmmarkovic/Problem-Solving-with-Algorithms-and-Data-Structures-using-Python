@@ -2,7 +2,7 @@ from Stack import Stack
 
 def baseConverter(number, base):
     s = Stack()
-    digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    digits = "0123456789ABCDEF"
     while number > 0:
         reminder = number% base
         s.push(digits[reminder])
