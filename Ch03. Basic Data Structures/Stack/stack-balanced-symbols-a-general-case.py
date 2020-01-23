@@ -1,4 +1,4 @@
-from Stack import Stack
+from stack import Stack
 
 def balancedSymbols(string):
     s = Stack()
