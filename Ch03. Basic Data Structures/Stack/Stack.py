@@ -18,3 +18,39 @@ class Stack:
 
     def push(self, item):
         self.stack.append(item)
+
+        
+'''
+
+this solution is slower
+
+previous
+############
+1. pop - pop() - O(1)
+2. push - append() - O(1)
+
+this
+############
+1. pop - pop(i) - O(k)
+2. push - insert(i) - O(n)
+
+
+class Stack:
+    def __init__(self):
+        self.stack: list = []
+
+    def isEmpty(self)->bool:
+        return len(self.stack) == 0
+
+    def size(self)->int:
+        return len(self.stack)
+
+    def push(self, item):
+        self.stack.insert(0, item)
+
+    def pop(self):
+        return self.stack.pop(0)
+
+    def peek(self):
+        return self.stack[0]
+'''
