@@ -12,6 +12,8 @@ class Stack:
         return self.stack[len(self.stack) - 1]
 
     def pop(self):
+        if self.isEmpty():
+            raise Exception('Stack is empty')
         # not checking if stack is empty
         # https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/issues/1
         return self.stack.pop()
@@ -40,7 +42,11 @@ class Stack:
     def push(self, item):
         self.stack.insert(0, item)
     def pop(self):
+        if self.isEmpty():
+            raise Exception('Stack is empty')
         return self.stack.pop(0)
     def peek(self):
+        if self.isEmpty():
+            raise Exception('Stack is empty')
         return self.stack[0]
 '''
