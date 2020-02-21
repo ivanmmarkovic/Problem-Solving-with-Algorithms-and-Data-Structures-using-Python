@@ -1,26 +1,18 @@
 
+
 class TreeNode:
-    def __init__(self, key = None, parent = None, leftChild = None, rightChild = None,
-        balanceFactor = 0, leftSubtreeHeight = 0, rightSubtreeHeight = 0):
+    def __init__(self, key = None, parent = None, leftChild = None, rightChild = None, 
+                        leftSubtreeHeight: int = 0, rightSubtreeHeight: int = 0, balanceFactor: int = 0):
         self.key = key
         self.parent = parent
         self.leftChild = leftChild
         self.rightChild = rightChild
-        self.balanceFactor = 0
         self.leftSubtreeHeight = leftSubtreeHeight
         self.rightSubtreeHeight = rightSubtreeHeight
-
-    def isRoot(self)->bool:
-        return self.parent is None
+        self.balanceFactor = balanceFactor
 
     def hasParent(self)->bool:
         return self.parent is not None
-
-    def isLeftChild(self)->bool:
-        return self.parent.leftChild == self
-
-    def isRightChild(self)->bool:
-        return self.parent.rightChild == self
 
     def hasLeftChild(self)->bool:
         return self.leftChild is not None
@@ -28,28 +20,26 @@ class TreeNode:
     def hasRightChild(self)->bool:
         return self.rightChild is not None
 
-    def hasBothChildren(self):
+    def hasBothChildren(self)->bool:
         return self.hasLeftChild() and self.hasRightChild()
 
-    def isLeaf(self):
+    def isLeaf(self)->bool:
         return not self.hasLeftChild() and not self.hasRightChild()
 
-    def findMin(self):
-        if self.hasLeftChild():
-            return self.leftChild.findMin()
-        else:
-            return self
-        
-    def findMax(self):
-        if self.hasRightChild():
-            return self.rightChild.findMax()
-        else:
-            return self
+    def isLeftChild(self)->bool:
+        return self.parent.leftChild == self
 
-    def inorder(self):
-        if self is not None:
-            if self.leftChild is not None:
-                self.leftChild.inorder()
-            print(self.key, end=", ")
-            if self.rightChild is not None:
-                self.rightChild.inorder()
+    def isRightChild(self)->bool:
+        return self.parent.rightChild == self
+
+    def findMin(self):
+        node = self
+        while node.leftChild is not None:
+            node = node.leftChild
+        return node
+
+    def findMax(self):
+        node = self
+        while node.rightChild is not None:
+            node = node.rightChild
+        return node
