@@ -96,16 +96,17 @@ class BinarySearchTree:
         toDelete: TreeNode = self.get(key)
         if toDelete is None:
             return
-        self._size -= 1
         if toDelete == self.root:
             if toDelete.isLeaf():
                 self.root = None
+                self._size -= 1
             elif toDelete.hasBothChildren():
                 minNode: TreeNode = toDelete.rightChild.findMin()
                 tmpKey = minNode.key
                 self.delete(tmpKey)
                 self.root.key = tmpKey
             else:
+                self._size -= 1
                 if toDelete.hasLeftChild():
                     self.root = self.root.leftChild
                     self.root.parent = None
@@ -114,6 +115,7 @@ class BinarySearchTree:
                     self.root.parent = None 
         else:
             if toDelete.isLeaf():
+                self._size -= 1
                 if toDelete.isLeftChild():
                     toDelete.parent.leftChild = None
                 else:
@@ -124,6 +126,7 @@ class BinarySearchTree:
                 self.delete(tmpKey)
                 toDelete.key = tmpKey
             else:
+                self._size -= 1
                 if toDelete.hasLeftChild():
                     if toDelete.isLeftChild():
                         toDelete.parent.leftChild = toDelete.leftChild
