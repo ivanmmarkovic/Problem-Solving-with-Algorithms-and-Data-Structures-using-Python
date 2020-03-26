@@ -1,22 +1,26 @@
+
 from graph import Graph
 
-graph = Graph()
+g: Graph = Graph()
 
-graph.addVertex("START")
-graph.addVertex("A")
-graph.addVertex("C")
-graph.addVertex("B")
-graph.addVertex("D")
-graph.addVertex("END")
+g.addVertex("a")
+g.addVertex("b")
+g.addVertex("c")
+g.addVertex("d")
+g.addVertex("e")
+g.addVertex("f")
 
-graph.addEdge("START", "A", 0)
-graph.addEdge("START", "C", 2)
-graph.addEdge("A", "B", 18)
-graph.addEdge("A", "D", 15)
-graph.addEdge("C", "B", 3)
-graph.addEdge("C", "D", 10)
-graph.addEdge("B", "END", 150)
-graph.addEdge("D", "END", 15)
-graph.dijkstra("START")
+g.addEdge("a", "b", 6)
+g.addEdge("a", "c", 3)
+g.addEdge("c", "b", 2)
+g.addEdge("c", "e", 20)
+g.addEdge("b", "e", 10)
+g.addEdge("b", "d", 2)
+g.addEdge("e", "d", 10)
+g.addEdge("e", "f", 100)
+g.addEdge("d", "f", 20)
 
-print(graph.showPath("END"))
+g.dijkstra("a")
+print(g.returnPath("f"))
+
+
