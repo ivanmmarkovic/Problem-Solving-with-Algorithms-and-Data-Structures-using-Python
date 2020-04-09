@@ -26,7 +26,7 @@ print(reverser2(string))
 
 # solution 3
 def reverser3(string: str, end: int)->str:
-    if len(string) == 0:
+    if end < 0: # if len(string) == 0:
         return ""
     elif end == 0:
         return string[end]
