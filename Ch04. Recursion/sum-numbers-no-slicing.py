@@ -1,7 +1,7 @@
 
 
 def sum(numbers: list, end: int)->int:
-    if len(numbers) == 0:
+    if end < 0: # empty list -> len(alist) == 0
         return 0
     elif end == 0:
         return numbers[end]
