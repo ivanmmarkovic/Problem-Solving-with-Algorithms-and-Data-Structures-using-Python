@@ -17,10 +17,10 @@ class HashMap:
             while newHash != hash and self.keys[newHash] != key and self.keys[newHash] is not None and self.keys[newHash] != "deleted":
                 newHash = self.rehash(newHash)
             if self.keys[newHash] != key or self.keys[newHash] is not None or self.keys[newHash] != "deleted":
-                self.keys[newHash] = key
-                self.values[newHash] = value
                 if self.keys[newHash] != key:
                     self.length += 1
+                self.keys[newHash] = key
+                self.values[newHash] = value
 
     def get(self, key):
         hash: int = self.hash(key)
