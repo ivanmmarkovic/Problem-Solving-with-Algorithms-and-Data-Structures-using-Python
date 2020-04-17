@@ -39,7 +39,7 @@ def treeParser(string: str)->TreeNode:
 tree: TreeNode = treeParser(string)
 
 def prettyPrint(bt: TreeNode, indent: int):
-    print(indent * ".", bt.key)
+    print(indent * " ", bt.key)
     if bt.leftChild is not None:
         prettyPrint(bt.leftChild, indent + 2)
     if bt.rightChild is not None:
