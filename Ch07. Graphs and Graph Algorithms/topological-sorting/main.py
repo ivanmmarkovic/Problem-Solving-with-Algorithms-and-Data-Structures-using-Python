@@ -2,7 +2,7 @@ from graph import Graph
 
 graph = Graph()
 
-vertices = ["a", "b", "c", "d", "e", "f", "g"]
+vertices = ["a", "b", "c", "d", "e", "f"]
 for vertex in vertices:
     graph.addVertex(vertex)
 
@@ -10,9 +10,8 @@ for vertex in vertices:
 graph.addEdge("a", "c")
 graph.addEdge("c", "d")
 graph.addEdge("c", "f")
-graph.addEdge("a", "b")
-graph.addEdge("d", "e")
 graph.addEdge("b", "c")
-graph.addEdge("b", "g")
+graph.addEdge("b", "e")
 
 graph.topsort()
+
