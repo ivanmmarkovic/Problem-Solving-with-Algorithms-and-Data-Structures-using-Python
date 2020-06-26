@@ -28,8 +28,6 @@ print(reverser2(string))
 def reverser3(string: str, end: int)->str:
     if end < 0: # if len(string) == 0:
         return ""
-    elif end == 0:
-        return string[end]
     else:
         return string[end] + reverser3(string, end - 1)
 
