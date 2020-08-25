@@ -1,68 +1,55 @@
 from vertex import Vertex
 
 class Graph:
-    def __init__(self, size: int = 10):
-        self.vertices: list = []
-        self.prev: dict = {}
-        self.adjacencyMatrix: list = [[None for x in range(size)] for y in range(size)] 
-        self.visited: dict = {}
+    def __init__(self):
+        self.__vertices__: dict = {}
+        self.__prev__: dict = {}
+        self.__adjacency_map__: dict = {}
+        self.__visited__: dict = {}
 
-    def addVertex(self, label: str):
-        vertex: Vertex = Vertex(label, float("inf"), len(self.vertices))
-        self.vertices.append(vertex)
-        self.prev[label] = None
-        self.visited[label] = False
+    def add_vertex(self, label: str):
+        self.__vertices__[label] = Vertex(label)
+        self.__prev__[label] = None
+        self.__adjacency_map__[label]: dict = {}
 
-    def addEdge(self, label1: str, label2: str, weight: int):
-        index1: int = self.findIndexByLabel(label1)
-        index2: int = self.findIndexByLabel(label2)
-        self.adjacencyMatrix[index1][index2] = weight
+    def add_edge(self, label1: str, label2: str, weight: int = float("inf")):
+        self.__adjacency_map__[label1][label2] = Vertex(label2, weight)
 
     def dijkstra(self, label: str):
-        index: int = self.findIndexByLabel(label)
-        self.vertices[index].weight = 0
-        tmpVertex: Vertex = self.vertices[index]
-        neighbour: Vertex
-        while tmpVertex is not None:            
-            for neighbourIndex in range(len(self.adjacencyMatrix[tmpVertex.index])):
-                if self.adjacencyMatrix[tmpVertex.index][neighbourIndex] is not None:
-                    neighbour = self.vertices[neighbourIndex]
-                    if tmpVertex.weight + self.adjacencyMatrix[tmpVertex.index][neighbour.index] < neighbour.weight:
-                        self.prev[neighbour.label] = tmpVertex.label
-                        neighbour.weight = tmpVertex.weight + self.adjacencyMatrix[tmpVertex.index][neighbour.index]
-            self.visited[tmpVertex.label] = True
-            tmpVertex = self.findUnvisitedVertexWithMinWeight()
-        
-    def returnPath(self, label: str)->str:
-        if self.prev[label] is None:
+        current: Vertex = self.__vertices__[label]
+        current.weight = 0
+        while current is not None:
+            for neighbour_label in self.__adjacency_map__[current.label]:
+                neighbour: Vertex = self.__adjacency_map__[current.label][neighbour_label]
+                vertex: Vertex = self.__vertices__[neighbour_label]
+                if current.weight + neighbour.weight < vertex.weight:
+                    self.__prev__[vertex.label] = current.label
+                    vertex.weight = current.weight + neighbour.weight
+            self.__visited__[current.label] = current.label
+            current = self.__find_vertex__()
+
+    def __find_vertex__(self):
+        vertex: Vertex = None
+        for label in self.__vertices__:
+            if label not in self.__visited__:
+                if vertex is None:
+                    vertex = self.__vertices__[label]
+                else:
+                    tmp: Vertex = self.__vertices__[label]
+                    if tmp.weight < vertex.weight:
+                        veretx = tmp
+        return vertex
+
+    def return_path(self, label: str) -> str:
+        if self.__prev__[label] is None:
             return label
         else:
-            return self.returnPath(self.prev[label]) + " -> " + label
-
-    def findUnvisitedVertexWithMinWeight(self)->Vertex:
-        unvisitedVertex: Vertex = None
-        for vertex in self.vertices:
-            if not self.visited[vertex.label]:
-                if unvisitedVertex is None:
-                    unvisitedVertex = vertex
-                elif unvisitedVertex.weight > vertex.weight:
-                    unvisitedVertex = vertex
-        return unvisitedVertex
-
-
-    def findIndexByLabel(self, label: str)->int:
-        found: bool = False
-        count: int = 0
-        while count < len(self.vertices) and not found:
-            if self.vertices[count].label == label:
-                found = True
-            else:
-                count += 1
-        if found:
-            return count
-        else:
-            raise Exception("Can't find vertex with label " + label)
+            return self.return_path(self.__prev__[label]) + " -> " + label
 
 
 
+        
+    
+    
 
+    
