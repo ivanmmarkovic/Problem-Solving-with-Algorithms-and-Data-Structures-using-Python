@@ -13,6 +13,7 @@ but it also contains other data structures, algorithms and problems.
 ### [Graphs](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs)
 - [Dijkstra algorithm - Shortest path](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra)
     - [Priority Queue implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra/priority-queue-impl-adjacency-map)
+    - [matrix implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra/matrix-impl)
 - [Prim's algorithm - Minimum Spanning Tree](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/prims-algorithm)
 
 ### [Trie](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/trie)
