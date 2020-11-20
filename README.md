@@ -1,9 +1,13 @@
 # Problem-Solving-with-Algorithms-and-Data-Structures-using-Python
-Code from Problem Solving with Algorithms and Data Structures using Python
 
-[book website](https://runestone.academy/runestone/books/published/pythonds/index.html)
+I started the project by learning data structures and algorithms from a book *Problem Solving with Algorithms and Data Structures using Python*.
+It does not contain everything from the book, 
+nor is everything implemented in the same way,
+but it also contains other data structures, algorithms and problems.
 
-[videos](https://teklern.blogspot.com/p/blog-page.html)
+[Book website](https://runestone.academy/runestone/books/published/pythonds/index.html)
+
+[Videos](https://teklern.blogspot.com/p/blog-page.html)
 
 
 ### [Graphs](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs)
