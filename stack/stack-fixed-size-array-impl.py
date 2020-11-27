@@ -29,7 +29,7 @@ class Stack:
         return self._stack[self._pointer]
 
     def size(self) -> int:
-        return len(self._pointer)
+        return len(self._pointer) + 1
 
 
 def reverse_string(s: str) -> str:
