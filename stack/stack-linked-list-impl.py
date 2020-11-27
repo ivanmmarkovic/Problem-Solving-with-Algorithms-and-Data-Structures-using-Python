@@ -1,45 +1,40 @@
 class Node:
     def __init__(self, key=None, next=None):
-        self._key = key
-        self._next = next
+        self.key = key
+        self.next = next
 
 
 class Stack:
-    def __init__(self,):
-        self._length: int = length
-        self._stack: list = [None] * self._length
-        self._pointer: int = -1
+    def __init__(self):
+        self._head: Node = None
+        self._count: int = 0
 
     def is_empty(self) -> bool:
-        return self._pointer == -1
-
-    def is_full(self) -> bool:
-        return self._pointer == self._length - 1
+        return self._head is None
 
     def push(self, item):
-        if self.is_full():
-            raise Exception("Stack is full")
-        self._pointer += 1
-        self._stack[self._pointer] = item
+        self._head = Node(item, self._head)
+        self._count += 1
 
     def pop(self):
         if self.is_empty():
             raise Exception("Stack is empty")
-        ret_value = self._stack[self._pointer]
-        self._pointer -= 1
+        ret_value = self._head.key
+        self._head = self._head.next
+        self._count -= 1
         return ret_value
 
     def peek(self):
         if self.is_empty():
             raise Exception("Stack is empty")
-        return self._stack[self._pointer]
+        return self._head.key
 
     def size(self) -> int:
-        return len(self._stack)
+        return len(self._count)
 
 
 def reverse_string(s: str) -> str:
-    stack: Stack = Stack(len(s))
+    stack: Stack = Stack()
     for character in s:
         stack.push(character)
 
