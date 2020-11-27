@@ -9,7 +9,12 @@ but it also contains other data structures, algorithms and problems.
 
 [Videos](https://teklern.blogspot.com/p/blog-page.html)
 
-
+### [Algorithm analysis](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/analysis)
+- [Anagrams - quadratic solution](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/analysis/anagrams-quadratic-solution.py)
+- [Anagrams - log linear solution](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/analysis/anagrams-loglinear-solution.py)
+- [Anagrams - linear solution](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/analysis/anagrams-linear-solution.py)
+- [Time - iterative solution]()
+- [Time - quadratic solution]()
 ### [Graphs](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs)
 - [Dijkstra algorithm - Shortest path](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra)
     - [Priority Queue implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra/priority-queue-impl-adjacency-map)
