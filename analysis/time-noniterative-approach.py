@@ -9,6 +9,7 @@ def sum_nums(n: int) -> int:
     return total
 
 
-print(sum_nums(100))
-print(sum_nums(50000000))
+nums: list = [100, 10000, 100000, 1000000]
+for n in nums:
+    print(sum_nums(n))
 
