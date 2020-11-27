@@ -1,5 +1,11 @@
+class Node:
+    def __init__(self, key=None, next=None):
+        self._key = key
+        self._next = next
+
+
 class Stack:
-    def __init__(self, length: int = 10):
+    def __init__(self,):
         self._length: int = length
         self._stack: list = [None] * self._length
         self._pointer: int = -1
@@ -29,7 +35,7 @@ class Stack:
         return self._stack[self._pointer]
 
     def size(self) -> int:
-        return len(self._pointer)
+        return len(self._stack)
 
 
 def reverse_string(s: str) -> str:
