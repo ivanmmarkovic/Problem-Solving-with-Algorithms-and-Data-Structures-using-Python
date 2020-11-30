@@ -51,6 +51,16 @@ class Deque:
         self._count -= 1
         return ret_value
 
+    def get_front(self):
+        if self.is_empty():
+            raise Exception("Deque is empty")
+        return self._deque[self._front]
+
+    def get_rear(self):
+        if self.is_empty():
+            raise Exception("Deque is empty")
+        return self._deque[self._rear]
+
     def is_full(self) -> bool:
         return (self._rear + 1) % self._length == self._front
 
