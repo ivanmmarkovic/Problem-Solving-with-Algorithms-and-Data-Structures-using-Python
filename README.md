@@ -21,6 +21,15 @@ but it also contains other data structures, algorithms and problems.
 - [Stack - less efficient array implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/stack/stack-array-impl-less-efficient.py)
 - [Stack - fixed size array implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/stack/stack-fixed-size-array-impl.py)
 - [Stack - linked list implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/stack/stack-linked-list-impl.py)
+    - [Examples](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/stack/examples)
+        - [Balanced brackets](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/stack/examples/balanced-brackets.py)
+        - [Number converter](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/stack/examples/number_converter.py)
+
+### [Queue](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/queue)
+- [Queue - array implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/queue/queue-array-impl.py)
+- [Queue - fixed size array implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/queue/queue-fixed-size-array-impl.py)
+- [Queue - linked list implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/queue/queue-linked-list-impl.py)
+- [Circular queue - fixed size array implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/queue/circular-queue-fixed-size-array-impl.py)
 
 ### [Graphs](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs)
 - [Dijkstra algorithm - Shortest path](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra)
