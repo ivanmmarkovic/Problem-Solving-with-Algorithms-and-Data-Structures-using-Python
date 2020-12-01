@@ -1,147 +1,140 @@
 from node import Node
 
+
 class List:
     def __init__(self):
         self.head: Node = None
         self.tail: Node = None
 
-    def isEmpty(self)->bool:
+    def is_empty(self) -> bool:
         return self.head is None
 
-    def numberOfElements(self)->int:
-        if self.isEmpty():
-            return 0
-        else:
-            current: Node = self.head
-            count: int = 0
-            while current is not None:
-                count += 1
-                current = current.next
-            return count
+    def print_all(self):
+        tmp: Node = self.head
+        while tmp is not None:
+            print(tmp.key, end=", ")
+        print("")
 
-    def addToHead(self, item):
-        if self.isEmpty():
-            self.head = self.tail = Node(item)
+    def number_of_elements(self) -> int:
+        count: int = 0
+        tmp: Node = self.head
+        while tmp is not None:
+            count += 1
+            tmp = tmp.next
+        return count
+
+    def add_to_head(self, key: int):
+        if self.is_empty():
+            self.head = self.tail = Node(key)
         else:
-            self.head = Node(item, None, self.head)
+            self.head = Node(key, None, self.head)
             self.head.next.prev = self.head
 
-    def addToTail(self, item):
-        if self.isEmpty():
-            self.head = self.tail = Node(item)
+    def add_to_tail(self, key: int):
+        if self.is_empty():
+            self.head = self.tail = Node(key)
         else:
-            self.tail.next = Node(item, self.tail, None)
+            self.tail.next = Node(key, self.tail)
             self.tail = self.tail.next
 
-    def deleteFromHead(self):
-        if self.isEmpty():
+    def delete_from_head(self) -> int:
+        if self.is_empty():
             return None
         else:
-            retValue = self.head.key
+            ret_node: Node = self.head
             if self.head == self.tail:
                 self.head = self.tail = None
             else:
                 self.head = self.head.next
                 self.head.prev = None
-            return retValue
+            return ret_node.key
 
-    def deleteFromTail(self):
-        if self.isEmpty():
+    def delete_from_tail(self) -> int:
+        if self.is_empty():
             return None
         else:
-            retValue = self.tail.key
+            ret_node: Node = self.tail
             if self.head == self.tail:
                 self.head = self.tail = None
             else:
-                self.tail = self.tail.prev
+                self.tail = self.tail.prev;
                 self.tail.next = None
-            return retValue
+            return ret_node.key
 
-    def deleteOnIndex(self, index: int):
-        lastIndex: int = self.numberOfElements() - 1
-        if index < 0 or index > lastIndex:
-            print("Index out of range")
-            return
-        else:
-            if index == 0:
-                self.deleteFromHead()
-            elif index == lastIndex:
-                self.deleteFromTail()
+    def delete_nodes_with_value(self, key: int):
+        if self.is_empty():
+            return None
+        ret_value: int = None
+        tmp: Node = self.head
+        while tmp.next is not None:
+            if tmp.next.key == key:
+                ret_value = tmp.next.key
+                tmp.next = tmp.next.next
+                if tmp.next is not None:
+                    tmp.next.prev = tmp
             else:
-                count: int = 0
-                current: Node = self.head
-                while count < index:
-                    count += 1
-                    current = current.next
-                current.prev.next = current.next
-                current.next.prev = current.prev
+                tmp = tmp.next
+        self.tail = tmp
+        if self.head.key == key:
+            ret_value = self.delete_from_head()
+        return ret_value
 
-    def deleteNodesWithValue(self, value):
-        retValue = None
-        if self.isEmpty():
-            return retValue
-        else:
-            current: Node = self.head
-            while current.next is not None:
-                if current.next.key == value:
-                    retValue = current.next.key
-                    current.next = current.next.next
-                    if current.next is not None:
-                        current.next.prev = current
-                else:
-                    current = current.next
-            self.tail = current
-            if self.head.key == value:
-                retValue = self.head.key
-                self.deleteFromHead()
-            return retValue
-
-    def insertAfter(self, listElement, newElement):
-        if self.isEmpty():
+    def delete_on_index(self, index: int):
+        if self.is_empty():
             return
+        end_index: int = self.number_of_elements() - 1
+        if index < 0 or index > end_index:
+            return
+        if index == 0:
+            self.delete_from_head()
+        elif index == end_index:
+            self.delete_from_tail()
         else:
-            current: Node = self.head
-            while current is not None:
-                if current.key == listElement:
-                    if current == self.tail:
-                        self.addToTail(newElement)
-                    else:
-                        newNode = Node(newElement, current, current.next)
-                        current.next = newNode
-                        newNode.next.prev = newNode
-                    current = current.next
-                current = current.next
+            tmp: Node = self.head
+            count: int = 0
+            while count < index:
+                tmp = tmp.next
+                count += 1
+            tmp.prev.next = tmp.next
+            tmp.next.prev = tmp.prev
 
-    def insertBefore(self, listElement, newElement):
-        if self.isEmpty():
-            return 
-        else:
-            current: Node = self.head
-            while current is not None:
-                if current.key == listElement:
-                    if current == self.head:
-                        self.addToHead(newElement)
-                    else:
-                        newNode = Node(newElement, current.prev, current)
-                        newNode.prev.next = newNode
-                        newNode.next.prev = newNode
-                current = current.next
+    def insert_after(self, list_element: int, new_element: int):
+        tmp: Node = self.head
+        while tmp is not None:
+            if tmp.key == list_element:
+                if tmp == self.tail:
+                    self.add_to_tail(new_element)
+                else:
+                    new_node: Node = Node(new_element, tmp, tmp.next)
+                    tmp.next = new_node
+                    new_node.next.prev = new_node
+                tmp = tmp.next
+            tmp = tmp.next
+
+    def insert_before(self, list_element: int, new_element: int):
+        tmp: Node = self.head
+        while tmp is not None:
+            if tmp.key == list_element:
+                if tmp == self.head:
+                    self.add_to_head(new_element)
+                else:
+                    new_node: Node = Node(new_element, tmp.prev, tmp)
+                    new_node.prev.next = new_node
+                    tmp.prev = new_node
+            tmp = tmp.next
 
     def sort(self):
+        swapped: bool = True
         outer: Node = self.head
+        inner: Node = self.tail
         while outer != self.tail:
-            inner: Node = self.tail
+            inner = self.tail
             while inner != outer:
-                if inner.prev.key > inner.key:
-                    tmp: int = inner.prev.key
-                    inner.prev.key = inner.key
-                    inner.key = tmp
+                if inner.key < inner.prev.key:
+                    k = inner.key
+                    inner.key = inner.prev.key
+                    inner.prev.key = k
                 inner = inner.prev
             outer = outer.next
-
-
-
-
-
 
 
