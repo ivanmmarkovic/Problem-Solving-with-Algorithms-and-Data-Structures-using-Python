@@ -13,6 +13,7 @@ class List:
         tmp: Node = self.head
         while tmp is not None:
             print(tmp.key, end=", ")
+            tmp = tmp.next
         print("")
 
     def number_of_elements(self) -> int:
