@@ -1,6 +1,7 @@
 numbers: list = [1, 2, 3, 4, 5]
 
 
+# slicing is O(k), better is solution with pointer
 def sum_numbers(nums: list) -> int:
     if len(nums) == 0:
         return 0
