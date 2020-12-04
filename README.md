@@ -53,6 +53,7 @@ but it also contains other data structures, algorithms and problems.
 - [Maze - path finder](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/recursion/maze.py)
 - [Palindrome](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/recursion/palindrome.py)
 - [Reverse linked list - recursive solution](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/recursion/reverse-linked-list.py)
+- [Reverse linked list - iterative solution](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/recursion/reverse-linked-list-iterative.py)
 - [Reverse list](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/recursion/reverse-list.py)
 - [Reverse string](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/recursion/reverse-string.py)
 - [Sum numbers - binary recursion](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/recursion/sum-numbers-binary-recursion.py)
