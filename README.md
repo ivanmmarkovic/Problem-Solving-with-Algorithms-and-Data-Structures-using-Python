@@ -61,6 +61,15 @@ but it also contains other data structures, algorithms and problems.
 - [Sum numbers - recursion with slicing](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/recursion/sum-numbers-slicing.py)
 - [Towers of Hanoi](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/recursion/towers-of-hanoi.py)
 
+### [Searching](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/searching)
+- [Sequential search - unordered list](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/searching/sequential-search-unordered-list.py)
+- [Sequential search - ordered list](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/searching/sequential-search-ordered-list.py)
+- [Binary search iterative](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/searching/binary-search-iterative.py)
+- [Binary search recursive](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/searching/binary-search-recursive.py)
+- [Binary search recursive pointers](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/searching/binary-search-recursive-pointers.py)
+
+### [Sorting](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/sorting)
+
 ### [Graphs](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs)
 - [Dijkstra algorithm - Shortest path](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra)
     - [Priority Queue implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra/priority-queue-impl-adjacency-map)
