@@ -28,7 +28,7 @@ def merge_sort(nums: list):
         j += 1
         k += 1
 
-    
+
 print(array)
 merge_sort(array)
 print(array)
