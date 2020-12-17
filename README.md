@@ -72,6 +72,9 @@ but it also contains other data structures, algorithms and problems.
 - [Linear probing](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/hash-table/linear-probing.py)
 - [Chaining](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/hash-table/chaining.py)
 
+### [Trees]()
+- [List of lists representation]()
+
 ### [Sorting](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/sorting)
 - [Bubble sort](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/sorting/bubble-sort.py)
 - [Short bubble](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/sorting/short-bubble.py)
