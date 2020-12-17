@@ -40,7 +40,7 @@ def tree_parser(s: str) -> TreeNode:
 tree_node: TreeNode = tree_parser(string)
 
 
-def preorder(node: TreeNode, space: int = 0) -> str:
+def preorder(node: TreeNode, space: int = 0):
     if node is not None:
         print(" " * space, node.key)
         preorder(node.get_left_child(), space + 2)
