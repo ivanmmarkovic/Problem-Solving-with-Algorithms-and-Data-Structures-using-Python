@@ -2,32 +2,7 @@
 from stack import Stack
 import operator
 import re
-
-
-class TreeNode:
-    def __init__(self, key=None, left=None, right=None):
-        self.key = key
-        self.left = left
-        self.right = right
-
-    def insert_root_value(self, key=None):
-        self.key = key
-
-    def insert_left(self, key=None):
-        self.left = TreeNode(key, self.left)
-
-    def insert_right(self, key=None):
-        self.right = TreeNode(key, None, self.right)
-
-    def get_root_value(self):
-        return self.key
-
-    def get_left_child(self):
-        return self.left
-
-    def get_right_child(self):
-        return self.right
-
+from treenode import TreeNode
 
 opers = {'+':operator.add, '-':operator.sub, '*':operator.mul, '/':operator.truediv}
 
@@ -65,12 +40,17 @@ def tree_parser(s: str) -> TreeNode:
 tree_node: TreeNode = tree_parser(string)
 
 
-def evaluate(node: TreeNode) -> int:
-    if node.get_left_child() is not None and node.get_right_child() is not None:
+def postorder(node: TreeNode) -> str:
+    if node is None:
+        return None
+    left = postorder(node.get_left_child())
+    right = postorder(node.get_right_child())
+    if left is not None and right is not None:
         f = opers[node.get_root_value()]
-        return f(evaluate(node.get_left_child()), evaluate(node.get_right_child()))
+        return f(left, right)
     else:
         return node.get_root_value()
 
 
-print(evaluate(tree_node))  # 45
+print(postorder(tree_node))  # 45
+
