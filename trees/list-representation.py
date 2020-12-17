@@ -56,7 +56,7 @@ binary_tree: list = build_tree()
 print(binary_tree)
 
 
-# ['a', 
+# ['a',
 #     ['b',
 #         [],
 #         ['d', [], []]],

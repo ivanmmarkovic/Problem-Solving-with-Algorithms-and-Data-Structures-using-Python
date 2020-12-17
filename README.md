@@ -74,6 +74,7 @@ but it also contains other data structures, algorithms and problems.
 
 ### [Trees]()
 - [List of lists representation]()
+- [Class representation]()
 
 ### [Sorting](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/sorting)
 - [Bubble sort](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/sorting/bubble-sort.py)
