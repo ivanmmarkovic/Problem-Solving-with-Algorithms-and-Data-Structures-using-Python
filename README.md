@@ -72,11 +72,13 @@ but it also contains other data structures, algorithms and problems.
 - [Linear probing](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/hash-table/linear-probing.py)
 - [Chaining](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/hash-table/chaining.py)
 
-### [Trees]()
+### [Trees](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/trees)
 - [List of lists representation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/trees/list-representation.py)
 - [Class representation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/trees/class-representation.py)
 - [Parse tree](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/trees/parse-tree.py)
-- [Tree traversal]()
+- [Tree traversal](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/trees/tree-traversal)
+    - [Methods](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/trees/tree-traversal/treenode.py)
+    - [Functions](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/trees/tree-traversal/functions.py)
 
 ### [Sorting](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/sorting)
 - [Bubble sort](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/sorting/bubble-sort.py)
