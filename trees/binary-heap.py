@@ -1,4 +1,5 @@
 
+# min heap
 class BinaryHeap:
     def __init__(self):
         self.pointer: int = 0
