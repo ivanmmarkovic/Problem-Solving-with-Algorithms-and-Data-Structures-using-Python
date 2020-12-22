@@ -7,10 +7,9 @@ vertices = ["a", "b", "c", "d"]
 for vertex in vertices:
     graph.addVertex(vertex)
 
-
-graph.addEdge("a", "b")
-graph.addEdge("b", "c")
-graph.addEdge("c", "d")
-graph.addEdge("d", "b")
+graph.add_edge("a", "b")
+graph.add_edge("b", "c")
+graph.add_edge("c", "d")
+graph.add_edge("d", "b")
 
 graph.dfs("a")

@@ -12,7 +12,7 @@ class Graph:
         self.colors[label] = "white"
         self.previous[label] = None
 
-    def addEdge(self, label1: str, label2: str):
+    def add_edge(self, label1: str, label2: str):
         self.adjacencyList[label1].append(label2)
 
     def dfs(self, label: str):
