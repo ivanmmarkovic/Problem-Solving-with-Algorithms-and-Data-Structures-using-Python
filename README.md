@@ -84,6 +84,7 @@ but it also contains other data structures, algorithms and problems.
     - [Postorder traversal example](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/trees/tree-traversal/postorder-traversal-example.py)
 - [Binary Heap - min heap implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/trees/binary-heap.py)  
 - [Binary Search Tree](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/trees/binary-search-tree.py)
+- [AVL tree](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/trees/avl-tree.py)
 
 ### [Sorting](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/sorting)
 - [Bubble sort](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/sorting/bubble-sort.py)
