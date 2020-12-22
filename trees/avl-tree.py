@@ -51,7 +51,7 @@ class TreeNode:
         return node
 
 
-class BinarySearchTree:
+class AVLTree:
     def __init__(self):
         self.root: TreeNode = None
         self.elements: int = 0
