@@ -103,6 +103,7 @@ but it also contains other data structures, algorithms and problems.
 - [Cycle detection](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/cycle-detection)
     - [Cycle detection directed graph](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/cycle-detection/cycle-directed-graph)
     - [Cycle detection undirected graph](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/cycle-detection/cycle-undirected-graph)
+- [Topological sorting](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/topological-sorting)
 - [Dijkstra algorithm - Shortest path](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra)
     - [Priority Queue implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra/priority-queue-impl-adjacency-map)
     - [Matrix implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra/matrix-impl)
