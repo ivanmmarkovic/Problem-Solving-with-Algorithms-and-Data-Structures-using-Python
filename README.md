@@ -97,6 +97,9 @@ but it also contains other data structures, algorithms and problems.
 
 ### [Graphs](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs)
 - [Breadth first search](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/breadth-first-search)
+- [Depth first search](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/depth-first-search)
+    - [Depth first search - stack](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/depth-first-search/depth-first-search)
+    - [Depth first search - recursive](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/depth-first-search/depth-first-search-recursive)
 - [Dijkstra algorithm - Shortest path](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra)
     - [Priority Queue implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra/priority-queue-impl-adjacency-map)
     - [Matrix implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra/matrix-impl)
