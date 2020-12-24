@@ -20,4 +20,5 @@ graph.add_edge("B", "END", 150)
 graph.add_edge("D", "END", 15)
 graph.dijkstra("START")
 
-print(graph.return_path("END"))
+print(graph.show_path("END"))
+
