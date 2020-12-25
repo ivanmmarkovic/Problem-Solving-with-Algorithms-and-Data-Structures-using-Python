@@ -2,66 +2,60 @@ from vertex import Vertex
 
 
 class Graph:
-    def __init__(self, matrix_size: int = 10):
-        self._matrix_size: int = matrix_size
-        self._vertices: list = [None] * self._matrix_size
-        self._pointer: int = 0
-        self._adjacency_matrix: list = [[None for i in range(self._matrix_size)] for j in range(self._matrix_size)]
-        self._prev: dict = {}
-        self._visited: dict = {}
+    def __init__(self, size: int = 10):
+        self.size: int = size
+        self.index: int = 0
+        self.vertices_list: list = [None] * self.size
+        self.vertices: dict = {}
+        self.adjacency_matrix: list = [[None for i in range(self.size)] for j in range(self.size)]
+        self.prev: dict = {}
+        self.visited: dict = {}
 
-    def add_vertex(self, label: str = None, weight: int = float("inf")):
-        if self._pointer == self._matrix_size:
+    def add_vertex(self, label: str):
+        if self.index == self.size:  # matrix is full
             return
-        vertex: Vertex = Vertex(label, float("inf"), self._pointer)
-        self._vertices[self._pointer] = vertex
-        self._prev[label] = None
-        self._pointer += 1
+        vertex: Vertex = Vertex(label, float("inf"), self.index)
+        self.vertices_list[self.index] = vertex
+        self.vertices[vertex.label] = vertex
+        self.index += 1
+        self.prev[vertex.label] = None
+        self.visited[vertex.label] = False
 
     def add_edge(self, label1: str, label2: str, weight: int):
-        vertex1: Vertex = self._find_vertex_by_label(label1)
-        vertex2: Vertex = self._find_vertex_by_label(label2)
-        self._adjacency_matrix[vertex1.get_index()][vertex2.get_index()] = weight
+        index1: int = self.vertices[label1].index
+        index2: int = self.vertices[label2].index
+        self.adjacency_matrix[index1][index2] = weight
 
     def dijkstra(self, label: str):
-        vertex: Vertex = self._find_vertex_by_label(label)
-        vertex.set_weight(0)
-        while vertex is not None:
-            index: int = vertex.get_index()
-            for i in range(len(self._adjacency_matrix[index])):
-                if self._adjacency_matrix[index][i] is not None:
-                    neighbour: Vertex = self._vertices[i]
-                    if neighbour.get_weight() > vertex.get_weight() + self._adjacency_matrix[index][i]:
-                        self._prev[neighbour.get_label()] = vertex.get_label()
-                        neighbour.set_weight(vertex.get_weight() + self._adjacency_matrix[index][i])
-            self._visited[vertex.get_label()] = vertex
-            vertex = self._find_minimum_weight_vertex()
+        current_vertex: Vertex = self.vertices[label]
+        current_vertex.weight = 0
+        while current_vertex is not None:
+            self.visited[current_vertex.label] = True
+            for i in range(self.index):
+                if self.adjacency_matrix[current_vertex.index][i] is not None:
+                    weight: int = self.adjacency_matrix[current_vertex.index][i]
+                    neighbour: Vertex = self.vertices_list[i]
+                    if current_vertex.weight + weight < neighbour.weight:
+                        neighbour.weight = current_vertex.weight + weight
+                        self.prev[neighbour.label] = current_vertex.label
+            current_vertex = self.find_minimum_weight_vertex()
 
-    def return_path(self, end_label: str = None) -> str:
-        if self._prev[end_label] is None:
-            return end_label
+    def return_path(self, label: str) -> str:
+        if self.prev[label] is None:
+            return label
         else:
-            return self.return_path(self._prev[end_label]) + " -> " + end_label
+            return self.return_path(self.prev[label]) + " -> " + label
 
-    def _find_vertex_by_label(self, label: str) -> Vertex:
+    def find_minimum_weight_vertex(self):
         vertex: Vertex = None
-        i: int = 0
-        found: bool = False
-        while i <= self._pointer and not found:
-            if self._vertices[i].get_label() == label:
-                vertex = self._vertices[i]
-                found = True
-            else:
-                i += 1
-        return vertex
-
-    def _find_minimum_weight_vertex(self):
-        vertex: Vertex = None
-        for i in range(0, self._pointer, +1):
-            v: Vertex = self._vertices[i]
-            if v.get_label() not in self._visited:
+        for label in self.vertices:
+            if not self.visited[label]:
                 if vertex is None:
-                    vertex = v
-                elif vertex.get_weight() > v.get_weight():
-                    vertex = v
+                    vertex = self.vertices[label]
+                else:
+                    if vertex.weight > self.vertices[label].weight:
+                        vertex = self.vertices[label]
         return vertex
+
+
+

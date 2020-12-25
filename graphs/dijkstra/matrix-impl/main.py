@@ -1,6 +1,7 @@
 from graph import Graph
 
-graph: Graph = Graph(20)
+
+graph: Graph = Graph()
 
 graph.add_vertex("START")
 graph.add_vertex("A")
