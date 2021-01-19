@@ -30,6 +30,7 @@ but it also contains other data structures, algorithms and problems.
 - [Queue - fixed size array implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/queue/queue-fixed-size-array-impl.py)
 - [Queue - linked list implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/queue/queue-linked-list-impl.py)
 - [Circular queue - fixed size array implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/queue/circular-queue-fixed-size-array-impl.py)
+- [Queue - two stacks implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/queue/queue-two-stacks-impl.py)
 
 ### [Deque](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/deque)
 - [Deque - array implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/deque/deque.py)
