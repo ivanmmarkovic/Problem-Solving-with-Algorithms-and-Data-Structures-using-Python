@@ -110,7 +110,6 @@ but it also contains other data structures, algorithms and problems.
     - [Matrix implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra/matrix-impl)
 - [Minimum Spanning Tree](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/minimum-spanning-tree)
     - [Minimum Spanning Tree in undirected graph](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/minimum-spanning-tree/breadth-first-search)
-        - perform breadth first search or depth first search and record previous edges
     - [Prim's algorithm - Minimum Spanning Tree in undirected weighted graph](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/minimum-spanning-tree/prims-algorithm)
 - [Is graph bipartite](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/is-graph-bipartite)
 - [Union find](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/union-find-path-compression)
