@@ -40,10 +40,8 @@ class Graph:
         self.edges.append([vertex_2_label, vertex_1_label, weight])
 
     def kruskal(self):
-        print(self.edges)
         # sort edges by weight increasingly
         self.edges = sort_edges_by_weight_increasingly(self.edges)
-        print(self.edges)
         minimum_spanning_tree: list = []
         for edge_list in self.edges:
             vertex_one: Vertex = self.vertices[edge_list[0]]
