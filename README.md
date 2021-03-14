@@ -111,6 +111,7 @@ but it also contains other data structures, algorithms and problems.
 - [Minimum Spanning Tree](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/minimum-spanning-tree)
     - [Minimum Spanning Tree in undirected graph](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/minimum-spanning-tree/breadth-first-search)
     - [Prim's algorithm - Minimum Spanning Tree in undirected weighted graph](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/minimum-spanning-tree/prims-algorithm)
+    - [Kruskal's algorithm - Minimum Spanning Tree in undirected weighted graph](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/minimum-spanning-tree/kruskals-algorithm)
 - [Is graph bipartite](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/is-graph-bipartite)
 - [Union find](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/union-find-path-compression)
 
