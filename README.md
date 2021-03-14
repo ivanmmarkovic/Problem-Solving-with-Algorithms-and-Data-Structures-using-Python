@@ -114,8 +114,8 @@ but it also contains other data structures, algorithms and problems.
     - [Kruskal's algorithm - Minimum Spanning Tree in undirected weighted graph](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/minimum-spanning-tree/kruskals-algorithm)
 - [Is graph bipartite](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/is-graph-bipartite)
 - [Union find](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/union-find)
-- [Number of connected components](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/union-find/number-of-connected-components)
-- [Union find path compression](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/union-find/union-find-path-compression)
+    - [Number of connected components](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/union-find/number-of-connected-components)
+    - [Union find path compression](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/union-find/union-find-path-compression)
 
 ### [Trie](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/trie)
 - [Trie](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/trie)
