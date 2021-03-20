@@ -119,3 +119,7 @@ but it also contains other data structures, algorithms and problems.
 
 ### [Trie](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/trie)
 - [Trie](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/trie)
+
+
+### [Substring search](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/substring-search)
+- [Brute force algorithm](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/substring-search/brute_force.py)
