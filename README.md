@@ -108,6 +108,7 @@ but it also contains other data structures, algorithms and problems.
 - [Dijkstra algorithm - Shortest path](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra)
     - [Priority Queue implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra/priority-queue-impl-adjacency-map)
     - [Matrix implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/dijkstra/matrix-impl)
+- [Bellman-Ford algorithm](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/bellman%E2%80%93ford)
 - [Minimum Spanning Tree](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/minimum-spanning-tree)
     - [Minimum Spanning Tree in undirected graph](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/minimum-spanning-tree/breadth-first-search)
     - [Prim's algorithm - Minimum Spanning Tree in undirected weighted graph](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/minimum-spanning-tree/prims-algorithm)
