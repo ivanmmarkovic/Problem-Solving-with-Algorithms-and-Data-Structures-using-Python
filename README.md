@@ -118,7 +118,7 @@ but it also contains other data structures, algorithms and problems.
 - [Union find](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/union-find)
     - [Number of connected components](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/union-find/number-of-connected-components)
     - [Union find path compression](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/union-find/union-find-path-compression)
-
+- [Kosaraju's algorithm](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/graphs/kosarajus-algorithm)
 ### [Trie](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/trie)
 - [Trie](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/trie)
 
