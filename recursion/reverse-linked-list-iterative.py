@@ -4,7 +4,7 @@ class ListNode:
         self.next = next
 
 
-def reverse_list(self, head: ListNode) -> ListNode:
+def reverse_list(head: ListNode) -> ListNode:
     if head is None or head.next is None:
         return head
 
