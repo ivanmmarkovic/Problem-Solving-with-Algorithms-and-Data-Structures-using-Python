@@ -25,9 +25,13 @@ class TreeNode:
         return self.parent is not None
 
     def is_left_child(self) -> bool:
+        if self.parent is None:
+            return False
         return self.parent.left == self
 
     def is_right_child(self) -> bool:
+        if self.parent is None:
+            return False
         return self.parent.right == self
 
     def find_min(self):
