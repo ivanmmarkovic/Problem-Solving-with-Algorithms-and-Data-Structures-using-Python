@@ -1,16 +1,18 @@
-def fibonacci(n: int) -> int:
+def fibonaci(n: int):
     
-    if n <= 1:
+    if n == 1:
         return 0
-    elif n == 2:
+    if n == 2:
         return 1
 
-    acc: int = 0
     prev: int = 0
     curr: int = 1
-    for _ in range(n - 1):
+    acc: int = 1
+
+    for _ in range(n - 2):
+        prev,curr = curr, prev + curr
         acc += curr
-        prev, curr = curr, prev + curr
+
 
     return acc
 
