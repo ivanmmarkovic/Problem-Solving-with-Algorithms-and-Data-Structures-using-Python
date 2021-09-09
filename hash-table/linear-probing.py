@@ -1,121 +1,142 @@
 
-class HashMap:
-    def __init__(self, length: int = 11):
-        self._length: int = length
-        self._keys: list = [None] * self._length
-        self._values: list = [None] * self._length
-        self._elements_count: int = 0
+from typing import Any, List, Tuple
 
-    def put(self, key: int, value: str):
+
+class HashTable:
+    def __init__(self, capacity: int = 11) -> None:
+        self.capacity: int = capacity
+        self.keys: List[int] = [None] * self.capacity
+        self.values: List[Any] = [None] * self.capacity
+        self.length: int = 0
+
+    def size(self) -> int:
+        return self.length
+
+    def put(self, key:int, value: Any) -> None:
+        (contains, index) = self._contains_and_index(key)
+        if contains:
+            self.values[index] = value
+            return
         hash: int = self.hash(key)
-        if self._keys[hash] is None or self._keys[hash] == "deleted" or self._keys[hash] == key:
-            if self._keys[hash] is None or self._keys[hash] == "deleted":
-                self._elements_count += 1
-            self._keys[hash] = key
-            self._values[hash] = value
+        if self.keys[hash] is None or self.keys[hash] == 'deleted':
+            self.keys[hash] = key
+            self.values[hash] = value
+            self.length += 1
+        elif self.keys[hash] == key:
+            self.values[hash] = value
         else:
             new_hash: int = self.rehash(hash)
-            while new_hash != hash and self._keys[new_hash] is not None and self._keys[new_hash] != "deleted"\
-                    and self._keys[new_hash] != key:
+            while self.keys[new_hash] is not None and self.keys[new_hash] != 'deleted' and self.keys[new_hash] != key and new_hash != hash:
                 new_hash = self.rehash(new_hash)
-            if self._keys[new_hash] is None or self._keys[new_hash] == "deleted" or self._keys[new_hash] == key:
-                if self._keys[new_hash] is None or self._keys[new_hash] == "deleted":
-                    self._elements_count += 1
-                self._keys[new_hash] = key
-                self._values[new_hash] = value
-
-    def get(self, key: int):
+            if self.keys[new_hash] is None or self.keys[new_hash] == 'deleted':
+                self.keys[new_hash] = key
+                self.values[new_hash] = value
+                self.length += 1
+            elif self.keys[new_hash] == key:
+                self.values[new_hash] = value
+            
+    def get(self, key:int) -> Any:
         hash: int = self.hash(key)
-        if self._keys[hash] is None:
+        if self.keys[hash] is None:
             return None
-        elif self._keys[hash] == key:
-            return self._values[hash]
+        elif self.keys[hash] == key:
+            return self.values[hash]
         else:
             new_hash: int = self.rehash(hash)
-            while new_hash != hash and self._keys[new_hash] is not None and self._keys[new_hash] != key:
+            while self.keys[new_hash] is not None and self.keys[new_hash] != key and new_hash != hash:
                 new_hash = self.rehash(new_hash)
-            if self._keys[new_hash] is None:
-                return None
-            elif self._keys[new_hash] == key:
-                return self._values[new_hash]
+            if self.keys[new_hash] == key:
+                return self.values[new_hash]
             else:
                 return None
 
-    def contains(self, key: int) -> bool:
+    def contains(self, key:int) -> bool:
         hash: int = self.hash(key)
-        if self._keys[hash] is None:
+        if self.keys[hash] is None:
             return False
-        elif self._keys[hash] == key:
+        elif self.keys[hash] == key:
             return True
         else:
             new_hash: int = self.rehash(hash)
-            while new_hash != hash and self._keys[new_hash] is not None and self._keys[new_hash] != key:
+            while self.keys[new_hash] is not None and self.keys[new_hash] != key and new_hash != hash:
                 new_hash = self.rehash(new_hash)
-            if self._keys[new_hash] is None:
-                return False
-            elif self._keys[new_hash] == key:
+            if self.keys[new_hash] == key:
                 return True
             else:
                 return False
 
-    def delete(self, key):
+    def _contains_and_index(self, key:int) -> Tuple[bool, int]:
         hash: int = self.hash(key)
-        if self._keys[hash] is None:
-            return
-        elif self._keys[hash] == key:
-            self._elements_count -= 1
-            self._keys[hash] = "deleted"
-            self._values[hash] = None
+        if self.keys[hash] is None:
+            return (False, -1)
+        elif self.keys[hash] == key:
+            return (True, hash)
         else:
             new_hash: int = self.rehash(hash)
-            while new_hash != hash and self._keys[new_hash] is not None and self._keys[new_hash] != key:
+            while self.keys[new_hash] is not None and self.keys[new_hash] != key and new_hash != hash:
                 new_hash = self.rehash(new_hash)
-            if self._keys[new_hash] == key:
-                self._elements_count -= 1
-                self._keys[new_hash] = "deleted"
-                self._values[new_hash] = None
-
-    def size(self) -> int:
-        return self._elements_count
-
-    def hash(self, key: int) -> int:
-        return key % self._length
-
-    def rehash(self, old_hash: int):
-        return (old_hash + 1) % self._length
+            if self.keys[new_hash] == key:
+                return (True, new_hash)
+            else:
+                return (False, new_hash)
 
 
-hm: HashMap = HashMap()
-hm.put(11, "string 11")
-hm.put(22, "string 22")
-hm.put(33, "string 33")
-hm.put(44, "string 44")
-hm.put(12, "string 12")
-hm.put(21, "string 21")
-
-print(hm._keys)
-print(hm._values)
-
-print("Get 11", hm.get(11))
-print("Get 33", hm.get(33))
-print("Get 21", hm.get(21))
-print("Get 7", hm.get(7))
-
-print("Contains key 7", hm.contains(7))
-print("Contains key 33", hm.contains(33))
+    def delete(self, key:int) -> None:
+        hash: int = self.hash(key)
+        if self.keys[hash] is None:
+            return
+        elif self.keys[hash] == key:
+            self.keys[hash] = 'deleted'
+            self.length -= 1
+        else:
+            new_hash: int = self.rehash(hash)
+            while self.keys[new_hash] is not None and self.keys[new_hash] != key and new_hash != hash:
+                new_hash = self.rehash(new_hash)
+            if self.keys[new_hash] == key:
+                self.keys[new_hash] = 'deleted'
+                self.length -= 1
+            else:
+                return False
 
 
-print("Delete key 7", hm.delete(7))
-print("Delete key 33", hm.delete(33))
+    def hash(self, key:int) -> int:
+        return key % self.capacity
 
-print("Contains key 33", hm.contains(33))
+    def rehash(self, old_hash) -> int:
+        return (old_hash + 1) % self.capacity 
 
-print(hm._keys)
-print(hm._values)
 
-hm.put(14, "string 14")
+ht: HashTable = HashTable()
+ht.put(11, 'string 11')
+ht.put(22, 'string 22')
+ht.put(33, 'string 33')
+ht.put(44, 'string 44')
 
-print("Contains key 33", hm.contains(33))
+ht.put(21, 'string 21')
+ht.put(12, 'string 12')
 
-print(hm._keys)
-print(hm._values)
+print(ht.keys)
+print(ht.values)
+print(ht.size())
+print('Get 11', ht.get(11))
+print('Get 33', ht.get(33))
+print('Get 147', ht.get(147))
+print('----------------------------------------')
+
+print('Contains 22', ht.contains(22))
+ht.delete(22)
+print(ht.size())
+print(ht.keys)
+print(ht.values)
+print('Contains 22', ht.contains(22))
+print('----------------------------------------')
+
+print('Contains 77', ht.contains(77))
+ht.put(44, 'string 144')
+ht.put(77, 'string 77')
+
+print(ht.size())
+print(ht.keys)
+print(ht.values)
+print('Contains 77', ht.contains(77))
+
