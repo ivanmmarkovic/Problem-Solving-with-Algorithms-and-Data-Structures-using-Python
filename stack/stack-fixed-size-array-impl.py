@@ -1,35 +1,39 @@
+from typing import Any, List
+
+
 class Stack:
-    def __init__(self, length: int = 10):
-        self._length: int = length
-        self._stack: list = [None] * self._length
-        self._pointer: int = -1
 
-    def is_empty(self) -> bool:
-        return self._pointer == -1
-
-    def is_full(self) -> bool:
-        return self._pointer == self._length - 1
-
-    def push(self, item):
-        if self.is_full():
-            raise Exception("Stack is full")
-        self._pointer += 1
-        self._stack[self._pointer] = item
-
-    def pop(self):
-        if self.is_empty():
-            raise Exception("Stack is empty")
-        ret_value = self._stack[self._pointer]
-        self._pointer -= 1
-        return ret_value
-
-    def peek(self):
-        if self.is_empty():
-            raise Exception("Stack is empty")
-        return self._stack[self._pointer]
+    def __init__(self, capacity: int = 1) -> None:
+        self.capacity: int = capacity
+        self.stack: List[Any] = [None] * self.capacity
+        self.pointer: int = -1
 
     def size(self) -> int:
-        return len(self._pointer) + 1
+        return self.pointer + 1
+
+    def is_empty(self) -> bool:
+        return self.pointer == -1
+
+    def is_full(self) -> bool:
+        return self.pointer == self.capacity - 1
+
+    def push(self, item:Any):
+        if self.is_full():
+            raise Exception('Stack is full')
+        self.pointer += 1
+        self.stack[self.pointer] = item
+
+    def pop(self) -> Any:
+        if self.is_empty():
+            raise Exception('Stack is empty')
+        item = self.stack[self.pointer]
+        self.pointer -= 1
+        return item
+
+    def peek(self) -> Any:
+        if self.is_empty():
+            raise Exception('Stack is empty')
+        return self.stack[self.pointer]
 
 
 def reverse_string(s: str) -> str:
