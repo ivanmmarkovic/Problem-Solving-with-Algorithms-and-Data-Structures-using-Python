@@ -19,6 +19,24 @@ print(palindrome_checker(str1))
 print(palindrome_checker(str2))
 
 
+def palindrome_checker_iterative(string:str) -> bool:
+    is_palindrome: bool = True
+    start = 0
+    end = len(string) - 1
+
+    while start < end and is_palindrome:
+        if string[start] != string[end]:
+            is_palindrome = False
+        start += 1
+        end -= 1
+    
+    return is_palindrome
+
+
+print(palindrome_checker_iterative(str1))
+print(palindrome_checker_iterative(str2))
+
+
 def palindrome_checker_slicing(string: str) -> bool:
     if len(string) <= 1:
         return True
