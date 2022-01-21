@@ -1,60 +1,67 @@
+
+
+from typing import Dict, List, Set
+
 from stack import Stack
 
-
 class Graph:
-    def __init__(self):
-        self.vertices: list = []
-        self.adjacency_list: dict = {}
-        self.adjacency_list_reversed: dict = {}
-        self.time = 0
-        self.visited: dict = {}
-        self.entry: dict = {}
-        self.exit: dict = {}
+
+    def __init__(self) -> None:
+        self.vertices: List[str] = []
+        self.colors: Dict[str, str] = {}
+        self.adjacency_list: Dict[str, Set[str]] = {}
+        self.adjacency_list_reversed: Dict[str, Set[str]] = {}
         self.stack: Stack = Stack()
-        self.connected_components: list = []
+        self.components: List[List[str]] = []
 
-    def add_vertex(self, label: str):
+    def add_vertex(self, label:str):
         self.vertices.append(label)
-        self.adjacency_list[label]: list = []
-        self.adjacency_list_reversed[label]: list = []
-        self.visited[label] = False
+        self.colors[label] = 'white'
+        self.adjacency_list[label] = set()
+        self.adjacency_list_reversed[label] = set()
 
-    def add_edge(self, label1: str, label2: str):
-        self.adjacency_list[label1].append(label2)
-        self.adjacency_list_reversed[label2].append(label1)
+    def add_edge(self, label1:str, label2:str):
+        self.adjacency_list[label1].add(label2)
+        self.adjacency_list_reversed[label2].add(label1)
 
     def kosaraju(self):
-        for vertex in self.vertices:
-            if not self.visited[vertex]:
-                self.dfs(vertex)
-        for vertex in self.visited:
-            self.visited[vertex] = False
-        while not self.stack.is_empty():
-            vertex = self.stack.pop()
-            components: list = []
-            if not self.visited[vertex]:
-                self.dfs_reversed_edges(vertex, components)
-            if len(components) > 0:
-                self.connected_components.append(components)
-        print(self.connected_components)
+        for label in self.vertices:
+            if self.colors[label] == 'white':
+                self.dfs(label)
 
-    def dfs(self, label: str):
-        self.visited[label] = True
-        self.time += 1
-        self.entry[label] = self.time
-        for neighbour in self.adjacency_list[label]:
-            if not self.visited[neighbour]:
-                self.dfs(neighbour)
-        self.time += 1
-        self.exit[label] = self.time
+        for color in self.colors:
+            self.colors[color] = 'white'
+
+        while not self.stack.is_empty():
+            current:str = self.stack.pop()
+
+            if self.colors[current] == 'white':
+                connected_components: List[str] = []
+                self.dfs_reversed(current, connected_components)
+
+                self.components.append(connected_components)
+
+        print(self.components)
+
+
+    def dfs(self, label:str):
+        self.colors[label] = 'gray'
+
+        for n in self.adjacency_list[label]:
+            if self.colors[n] == 'white':
+                self.dfs(n)
+
+        self.colors[label] = 'black'
         self.stack.push(label)
 
-    def dfs_reversed_edges(self, label: str, components: list = None):
-        self.visited[label] = True
-        for neighbour in self.adjacency_list_reversed[label]:
-            if not self.visited[neighbour]:
-                self.dfs_reversed_edges(neighbour, components)
-        components.append(label)
+    def dfs_reversed(self, label: str, connected_components:List[str]):
+        self.colors[label] = 'gray'
+
+        for n in self.adjacency_list_reversed[label]:
+            if self.colors[n] == 'white':
+                self.dfs_reversed(n, connected_components)
+        connected_components.append(label)
+        self.colors[label] = 'black'
 
 
 
