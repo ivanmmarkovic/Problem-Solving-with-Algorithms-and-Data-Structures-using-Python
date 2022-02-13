@@ -1,106 +1,73 @@
 
-from typing import Any, List
+
+from typing import Any, List, Tuple
 
 
 class HashTable:
 
     def __init__(self, capacity:int = 11) -> None:
-        self.capacity:int = capacity
-        self.length: int = 0
+        self.capacity:int  = capacity
         self.keys: List[int] = [None] * self.capacity
-        self.values: List[Any] = [None] * self.capacity
+        self.values: List[int] = [None] * self.capacity
+        self.length: int = 0
+
 
     def put(self, key:int, value:Any):
-        index:int = self.put_helper(key)
-        if index != -1:
+        index, contains = self.find(key)
+        if contains:
             self.values[index] = value
             return
         hash:int = self.hash(key)
-        if self.keys[hash] is None or self.keys[hash] == -1:
-            self.keys[hash] = key
+        if self.keys[hash] == float('inf') or self.keys[hash] is None:
+            self.keys[hash] = key 
             self.values[hash] = value
             self.length += 1
-        elif self.keys[hash] == key:
-            self.values[hash] = value
         else:
-            new_hash:int = self.rehash(hash)
-            while new_hash != hash and self.keys[new_hash] is not None and self.keys[new_hash] != -1 and self.keys[new_hash] != key:
+            new_hash:int = self.rehash(hash) % self.capacity
+            while self.keys[new_hash] is not None and self.keys[new_hash] != float('inf') and new_hash != hash:
                 new_hash = self.rehash(new_hash)
-
-            if self.keys[new_hash] is None or self.keys[new_hash] == -1:
-                self.keys[new_hash] = key
+            if self.keys[new_hash] == float('inf') or self.keys[new_hash] is None:
+                self.keys[new_hash] = key 
                 self.values[new_hash] = value
                 self.length += 1
-            elif self.keys[new_hash] == key:
-                self.values[new_hash] = value
 
-    def put_helper(self, key) -> int:
-        hash:int = self.hash(key)
-        if self.keys[hash] is None:
-            return -1
-        elif self.keys[hash] == key:
-            return hash
-        else:
-            new_hash:int = self.rehash(hash)
-            while new_hash != hash and self.keys[new_hash] is not None and self.keys[new_hash] != key:
-                new_hash = self.rehash(new_hash)
+        
+    def contains(self, key:int) -> bool:
+        _, contains = self.find(key)
+        return contains
 
-            if self.keys[new_hash] == key:
-                return new_hash
-            else:
-                return -1
 
     def get(self, key:int) -> Any:
-        hash:int = self.hash(key)
-        if self.keys[hash] is None:
-            return None
-        elif self.keys[hash] == key:
-            return self.values[hash]
-        else:
-            new_hash:int = self.rehash(hash)
-            while new_hash != hash and self.keys[new_hash] is not None and self.keys[new_hash] != key:
-                new_hash = self.rehash(new_hash)
+        index, contains = self.find(key)
+        if contains:
+            return self.values[index] 
+        return None
 
-            if self.keys[new_hash] == key:
-                return self.values[new_hash]
-            else:
-                return None
-
-    def contains(self, key:int) -> bool:
-        hash:int = self.hash(key)
-        if self.keys[hash] is None:
-            return False
-        elif self.keys[hash] == key:
-            return True
-        else:
-            new_hash:int = self.rehash(hash)
-            while new_hash != hash and self.keys[new_hash] is not None and self.keys[new_hash] != key:
-                new_hash = self.rehash(new_hash)
-
-            if self.keys[new_hash] == key:
-                return True
-            else:
-                return False
 
     def delete(self, key:int):
-        hash:int = self.hash(key)
-        if self.keys[hash] is None:
+        index, contains = self.find(key)
+        if not contains:
             return
-        elif self.keys[hash] == key:
-            self.keys[hash] = -1
-            self.values[hash] = None
-            self.length -= 1
+        self.keys[index] = float('inf')
+        self.values[index] = None
+        self.length -= 1
+
+
+    def find(self, key:int) -> Tuple[int, bool]:
+        hash:int = self.hash(key)
+        if self.keys[hash] == key:
+            return (hash, True)
+        elif self.keys[hash] is None:
+            return (None, False)
         else:
-            new_hash:int = self.rehash(hash)
-            while new_hash != hash and self.keys[new_hash] is not None and self.keys[new_hash] != key:
+            new_hash:int = self.rehash(hash) % self.capacity
+            while self.keys[new_hash] != key and self.keys[new_hash] is not None and new_hash != hash:
                 new_hash = self.rehash(new_hash)
 
             if self.keys[new_hash] == key:
-                self.keys[new_hash] = -1
-                self.values[new_hash] = None
-                self.length -= 1
-            else:
-                return None
+                return (new_hash, True)
+            return (None, False)
+
 
     def size(self) -> int:
         return self.length
@@ -108,9 +75,9 @@ class HashTable:
     def hash(self, key:int) -> int:
         return key % self.capacity
 
+
     def rehash(self, old_hash:int) -> int:
         return (old_hash + 1) % self.capacity
-
 
 
 ht: HashTable = HashTable()
@@ -126,7 +93,7 @@ print(ht.keys)
 print(ht.values)
 print(ht.size())
 print('Get 11', ht.get(11))
-print('Get 33', ht.get(33))
+print('Get 22', ht.get(22))
 print('Get 147', ht.get(147))
 print('----------------------------------------')
 
@@ -150,3 +117,4 @@ print(ht.keys)
 print(ht.values)
 print('Contains 77', ht.contains(77))
 print('Contains 44', ht.contains(44))
+
