@@ -107,7 +107,7 @@ class BinarySearchTree:
 
     def contains(self, key) -> bool:
         if self.is_empty():
-            return None
+            return False
         found: bool = False
         node: TreeNode = self.root
         while node is not None and not found:
