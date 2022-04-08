@@ -1,56 +1,75 @@
+from typing import List
+
 from vertex import Vertex
 
 
 class PriorityQueue:
-    def __init__(self):
-        self.pq: list = [None]
-        self._pointer: int = 0
+
+
+    def __init__(self) -> None:
+        self.queue: List[Vertex] = [None]
+        self.pointer:int = 0
+
 
     def is_empty(self) -> bool:
-        return self._pointer == 0
+        return self.pointer == 0
 
-    def insert(self, vertex: Vertex):
-        self.pq.append(vertex)
-        self._pointer += 1
-        vertex.key = self._pointer
-        self._perc_up(self._pointer)
 
-    def _perc_up(self, pointer: int):
-        while pointer // 2 > 0:
-            if self.pq[pointer // 2].weight > self.pq[pointer].weight:
-                self.pq[pointer // 2], self.pq[pointer] = self.pq[pointer], self.pq[pointer // 2]
-                self.pq[pointer // 2].key = pointer // 2
-                self.pq[pointer].key = pointer
-            pointer = pointer // 2
+    def insert(self, v:Vertex):
+        self.queue.append(v)
+        self.pointer += 1
+        v.index = self.pointer
+        self.perc_up(self.pointer)
 
-    def decrease_key(self, pointer: int):
-        self._perc_up(pointer)
+
+    def perc_up(self, index:int):
+        while index // 2 > 0:
+            if self.queue[index].weight < self.queue[index // 2].weight:
+                self.queue[index], self.queue[index // 2] = self.queue[index // 2], self.queue[index]
+                self.queue[index].index = index 
+                self.queue[index // 2].index = index // 2
+            index = index // 2
+
+
+    def decrease_key(self, key:int):
+        self.perc_up(key)
+
+
+    def get_min(self) -> Vertex:
+        if self.is_empty():
+            raise Exception('Priority queue is empty')
+        return self.queue[1]
+
 
     def delete_min(self) -> Vertex:
         if self.is_empty():
-            raise Exception("Priority queue is empty")
-        v: Vertex = self.pq[1]
-        self.pq[1] = self.pq[self._pointer]
-        self.pq[1].key = 1
-        self.pq.pop()
-        self._pointer -= 1
-        self._perc_down(1)
+            raise Exception('Priority queue is empty')
+        v:Vertex = self.queue[1]
+        self.queue[1] = self.queue[self.pointer]
+        self.queue[1].index = 1
+        self.queue.pop()
+        self.pointer -= 1
+        self.perc_down(1)
         return v
 
-    def _perc_down(self, pointer: int):
-        while pointer * 2 <= self._pointer:
-            min_index: int = self._find_swap_index(pointer)
-            if self.pq[pointer].weight > self.pq[min_index].weight:
-                self.pq[pointer], self.pq[min_index] = self.pq[min_index], self.pq[pointer]
-                self.pq[pointer].key = pointer
-                self.pq[min_index].key = min_index
-            pointer = min_index
 
-    def _find_swap_index(self, pointer: int) -> int:
-        if pointer * 2 + 1 > self._pointer:
-            return pointer * 2
+    def perc_down(self, index:int):
+        while index * 2 <= self.pointer:
+            min_index:int = self.find_min_index(index)
+            if self.queue[index].weight > self.queue[min_index].weight:
+                self.queue[index], self.queue[min_index] = self.queue[min_index], self.queue[index]
+                self.queue[min_index].index = min_index 
+                self.queue[index].index = index
+            index = min_index
+
+
+
+    def find_min_index(self, index:int) -> int:
+        if index * 2 + 1 > self.pointer:
+            return index * 2
         else:
-            if self.pq[pointer * 2].weight <= self.pq[pointer * 2 + 1].weight:
-                return pointer * 2
+            if self.queue[index * 2].weight <= self.queue[index * 2 + 1].weight:
+                return index * 2
             else:
-                return pointer * 2 + 1
+                return index * 2 + 1
+
