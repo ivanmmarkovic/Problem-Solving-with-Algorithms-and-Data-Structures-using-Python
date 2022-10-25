@@ -90,8 +90,12 @@ class HashTable:
                     found = True
                 else:
                     i += 1
-            if found:
-                items.pop(i)
+            if not found:
+                return None
+            
+            items.pop(i)
+            if len(items) == 0:
+                self.table[index] = None
             return None
 
 
