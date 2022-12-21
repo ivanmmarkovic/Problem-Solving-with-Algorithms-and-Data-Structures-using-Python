@@ -6,6 +6,8 @@ class Queue:
         self._queue.insert(0, item)
 
     def dequeue(self):
+        if self.is_empty():
+            raise Exception('Queue is empty')
         return self._queue.pop()
 
     def size(self) -> int:
