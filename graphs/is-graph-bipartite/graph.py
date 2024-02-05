@@ -16,7 +16,7 @@ class Graph:
         self.adjacency_list[label1].append(label2)
         self.adjacency_list[label2].append(label1)
 
-    def is_bipartite(self) -> bool:
+    def bipartite_check(self) -> bool:
         for vertex in self.vertices:
             if self.color[vertex] is not None:
                 continue
