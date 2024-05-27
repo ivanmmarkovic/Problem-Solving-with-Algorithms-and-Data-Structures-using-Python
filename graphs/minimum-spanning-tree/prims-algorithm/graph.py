@@ -20,7 +20,7 @@ class Graph:
 
     def add_edge(self, label1:str, label2:str, weight:int):
         self.adjacency_map[label1].append(Vertex(label2, weight))
-        self.adjacency_map[label1].append(Vertex(label1, weight))
+        self.adjacency_map[label2].append(Vertex(label1, weight))
 
     
     def prims(self, label:str):
