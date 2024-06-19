@@ -13,4 +13,16 @@ def converter(num: int, base: int) -> str:
     return result
 
 
+'''
+digits = "0123456789ABCDEF"
+def converter(num: int, base: int) -> str:
+
+    r:str = ''
+    while num >  0:
+        r = digits[num % base] + r
+        num = num // base       
+    
+    return r
+'''
+
 print(converter(1453, 16)) # 5AD
