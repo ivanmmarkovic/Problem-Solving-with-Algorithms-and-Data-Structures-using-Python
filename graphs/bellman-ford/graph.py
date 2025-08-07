@@ -4,44 +4,75 @@
 #  to all other vertices in weighted graph.
 #  Runtime O(V*E)
 
+from typing import Set, Dict, List, Tuple
+
+
 class Graph:
-    def __init__(self):
-        self.vertices: list = []
-        self.edges: list = []
-        self.distance: dict = {}
-        self.prev: dict = {}
 
-    def add_vertex(self, label: str):
-        self.vertices.append(label)
-        self.distance[label] = None
+
+    def __init__(self) -> None:
+        self.vertices:Set[str] = set()
+        self.edges:List[Tuple[str, str, int]] = list()
+        self.prev:Dict[str, str] = dict()
+        self.distances:Dict[str, int] = dict()
+
+
+    def add_vertex(self, label:str) -> None:
+        self.vertices.add(label)
         self.prev[label] = None
+        self.distances[label] = None
 
-    def add_edge(self, label1: str, label2: str, weight: int):
-        self.edges.append([label1, label2, weight])
 
-    def bellman_ford(self, source: str):
-        self.distance[source] = 0
+    def add_edge(self, v1:str, v2:str, distance:int) -> None:
+        self.edges.append((v1, v2, distance))
 
-        for _ in range(len(self.vertices)):
 
-            for edge in self.edges:
-                label1: str = edge[0]
-                label2: str = edge[1]
-                weight: int = edge[2]
+    def bellman_ford(self, label:str) -> None:
+        self.distances[label] = 0
 
-                if self.distance[label1] is None:
+        for _ in range(len(self.vertices) - 1):
+
+            for v1, v2, distance in self.edges:
+                if self.distances[v1] is None:
                     continue
-                if self.distance[label2] is None:
-                    self.distance[label2] = self.distance[label1] + weight
-                    self.prev[label2] = label1
-                    continue
-                if self.distance[label1] + weight < self.distance[label2]:
-                    self.distance[label2] = self.distance[label1] + weight
-                    self.prev[label2] = label1
-                    continue
+                if self.distances[v2] is None or self.distances[v2] > self.distances[v1] + distance:
+                    self.distances[v2] = self.distances[v1] + distance
+                    self.prev[v2] = v1
 
-    def print_distances(self, source: str):
+        # Check for negative-weight cycles
+        for v1, v2, distance in self.edges:
+            if self.distances[v1] is not None and self.distances[v2] > self.distances[v1] + distance:
+                raise ValueError("Graph contains a negative-weight cycle")
+
+        self._print_paths(label)
+
+
+    def _print_paths(self, label:str) -> None:
         for v in self.vertices:
-            if v != source:
-                distance: int = self.distance[v]
-                print(f'Distance from {source} to {v} is {distance}')
+            if v == label:
+                continue
+            if self.distances[v] is not None:
+                print(f'Path from {label} to {v} is {self._return_path(v)} and distance is {self.distances[v]}')
+            else:
+                print(f'No path from {label} to {v}')
+
+
+    def _return_path(self, label:str) -> str:
+        if self.prev[label] is None:
+            return label
+        return self._return_path(self.prev[label]) + ' -> ' + label
+    
+
+
+g = Graph()
+for v in ['A', 'B', 'C', 'D']:
+    g.add_vertex(v)
+
+g.add_edge('A', 'B', 1)
+g.add_edge('B', 'C', 3)
+g.add_edge('A', 'C', 10)
+g.add_edge('C', 'D', 2)
+g.add_edge('D', 'B', 4)
+
+g.bellman_ford('A')
+
