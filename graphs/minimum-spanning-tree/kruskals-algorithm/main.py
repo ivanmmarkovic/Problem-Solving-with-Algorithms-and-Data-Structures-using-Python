@@ -19,4 +19,4 @@ g.add_edge('c', 'd', 41)
 g.add_edge('c', 'f', 2)
 g.add_edge('f', 'e', 1)
 
-g.kruskal()
+print(g.kruskal())
