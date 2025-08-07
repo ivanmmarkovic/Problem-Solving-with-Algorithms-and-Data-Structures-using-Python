@@ -15,4 +15,4 @@ g.add_edge('6', '4')
 g.add_edge('7', '6')
 g.add_edge('8', '7')
 
-g.kosaraju()
+print(g.kosaraju())
