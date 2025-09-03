@@ -11,9 +11,13 @@ def balanced_brackets(string: str) -> bool:
                 return False
             if "([{".index(stack.peek()) == ")]}".index(character):
                 stack.pop()
+            else:
+                return False
+    
     return stack.is_empty()
 
 
 print(balanced_brackets('((()))'))  # True
 print(balanced_brackets('(()'))  # False
 print(balanced_brackets(']()'))  # False
+print(balanced_brackets('(])'))  # False
