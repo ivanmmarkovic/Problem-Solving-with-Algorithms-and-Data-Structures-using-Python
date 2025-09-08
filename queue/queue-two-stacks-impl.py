@@ -42,6 +42,17 @@ class Queue:
             self.input_stack.push(self.output_stack.pop())
         return ret_value
 
+    def peek(self):
+        if self.is_empty():
+            raise Exception("Queue is empty")
+        while not self.input_stack.is_empty():
+            self.output_stack.push(self.input_stack.pop())
+        ret_value = self.input_stack.pop()
+        self.output_stack.push(ret_value)
+        while not self.output_stack.is_empty():
+            self.input_stack.push(self.output_stack.pop())
+        return ret_value
+
 
 def hot_potato(people: list, num: int) -> str:
     q: Queue = Queue()
