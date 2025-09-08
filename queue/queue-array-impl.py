@@ -10,6 +10,11 @@ class Queue:
             raise Exception('Queue is empty')
         return self._queue.pop()
 
+    def peek(self):
+        if self.is_empty():
+            raise Exception('Queue is empty')
+        return self._queue[len(self._queue) - 1]
+
     def size(self) -> int:
         return len(self._queue)
 
