@@ -25,6 +25,11 @@ class Queue:
         self._count -= 1
         return ret_value
 
+    def peek(self):
+        if self.is_empty():
+            raise Exception("Queue is empty")
+        return self._queue[self._front]
+
     def size(self) -> int:
         return self._count
 
