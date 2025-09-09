@@ -37,6 +37,7 @@ but it also contains other data structures, algorithms and problems.
 ### [Deque](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/deque)
 - [Deque - array implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/deque/deque.py)
 - [Circular deque - fixed size array implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/deque/circular-deque.py)
+- [Deque - linked list implementation](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/blob/master/deque/deque_linked_list_impl.py)
 
 ### [Linked lists](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/linked-lists)
 - [Singly linked list](https://github.com/ivanmmarkovic/Problem-Solving-with-Algorithms-and-Data-Structures-using-Python/tree/master/linked-lists/singly-linked-list)
