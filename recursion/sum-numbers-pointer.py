@@ -1,7 +1,7 @@
 numbers: list = [1, 2, 3, 4, 5]
 
 
-# O(n) time, O(n) space
+# O(n) time
 def sum_numbers(nums: list) -> int:
 
     def helper(elements: list, end: int) -> int:
